@@ -1,0 +1,109 @@
+body {
+    margin: 5px auto; /* Add space from top and center horizontally */
+    padding: 0;
+    font-family: Helvetica, sans-serif; 
+    text-align: left; /* Center all content horizontally */
+    display: flex;
+    justify-content: center; /* Center the body horizontally */
+    align-items: flex-start; /* Center the body vertically from the top */
+    min-height: 100vh; /* Ensure the body takes at least the full height of the viewport */
+}
+
+
+a { 
+    color:#0004ff;
+    text-decoration:none; 
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1 { 
+    font-weight:bold;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color:#0004ff;
+    border-bottom:1px solid #0011ff;
+    padding:0 0 10px 0;
+}
+
+h2 {
+    font-weight:bold;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color:#0004ff;
+    margin:30px 0 0;
+}
+
+#content { 
+    float:center;
+    width:60%;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding:0 0 0 30px; 
+}
+
+p.date { 
+    color:#ccc;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 12px;
+    font-style: italic; 
+}
+
+/* pagination */
+.pagination { 
+    margin:40px 0; 
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight:bold;
+}
+
+/* forms */
+label { 
+    float:center;
+    clear:both;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color:#0400ff;
+    margin-bottom:4px; 
+}
+
+input, textarea { 
+    clear:both;
+    float:center;
+    margin:0 0 10px;
+    width: 200px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background:#ffffff;
+    border:1px solid #0026ff;
+    border-style: groove;
+    border-radius: 9999px;
+    font-weight:bold;
+    padding:6px 10px;
+    font-size:12px;
+}
+input[type=submit] {
+    font-weight:bold;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background:#0026ff;
+    color:#ffffff;
+    padding:10px 20px;
+    font-size:14px;
+    text-transform:uppercase; 
+}
+.errorlist { 
+    color:#cc0033;
+    float:left;
+    clear:both;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding-left:10px; 
+}
+
+/* comments */
+.comment {
+    padding:10px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.comment:nth-child(even) {
+    background:#efefef;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.comment .info {
+    font-weight:bold;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size:12px;
+    color:#666;
+}

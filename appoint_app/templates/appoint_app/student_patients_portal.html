@@ -1,0 +1,306 @@
+{% if request.user.is_authenticated %}
+{% load tz %}
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Appoint-Master | @Student-Patient Dashboard</title>
+
+   <!-- Material Symbols/Icons CDN -->
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp" />
+
+   <!-- Custom CSS file  -->
+   <link rel="stylesheet" href="{% static 'appoint_app/css/portal_master.css' %}">
+
+</head>
+<body data-theme="light">
+   <div class="container">
+      <!--Start of aside-->
+      <aside>
+         <div class="top">
+            <div class="logo">
+               <!--Javascript loads logo based on theme-->
+            </div>
+            <div class="close" id="close-btn">
+               <span class="material-symbols-sharp">close</span>
+            </div>
+         </div>
+
+         <div class="sidebar">
+            <a href="#" class="active">
+               <span class="material-symbols-sharp">grid_view</span>
+               <h3>Dashboard</h3>
+            </a>
+            <a href="{% url 'create-appointment-patient' %}">
+               <span class="material-symbols-sharp">add</span>
+               <h3>New Appointment</h3>
+            </a>         
+            <a href="{% url 'view-appointments'%}">
+               <span class="material-symbols-sharp">calendar_clock</span>
+               <h3>View your Appointments</h3>
+            </a>           
+            <a href="{% url 'view-appointments-manage' %}">
+               <span class="material-symbols-sharp">book_online</span>
+               <h3>Manage your Appointments</h3>
+            </a>
+            <a href="{% url 'all-payments' %}">
+               <span class="material-symbols-sharp">paid</span>
+               <h3>Your Payments</h3>
+            </a>
+            <a href="{% url 'video-call-patient' %}">
+               <span class="material-symbols-sharp">videocam</span>
+               <h3>Video call Appointment</h3>
+               <span class="message-count1">soon</span>
+            </a> 
+            <a href="{% url 'delete_account_confirmation' %}">
+               <span class="material-symbols-sharp">warning</span>
+               <h3>Delete my Account</h3>
+           </a>
+                       
+            <a href="{% url 'logout' %}">
+               <span class="material-symbols-sharp">logout</span>
+               <h3>Logout</h3>
+            </a>
+         </div>
+      </aside>
+      <!----End of aside-->
+
+      <!--Start of main-->
+      <main>
+         <h1>Student Patients Dashboard</h1>
+         
+         <div class="date">
+            <span id="real-time-clock" style="font-weight: 700; color:rgb(169, 27, 212);" class="nav-link">
+               {% localtime on %}
+                   {% now "l, F j, Y H:i:s" %}
+               {% endlocaltime %}
+           </span>
+         </div>
+
+         <div class="insights">
+            <!--Start of booked appointments-->
+            <div class="booked">
+               <span class="material-symbols-sharp">book_online</span>
+               <div class="middle">
+                  <div class="left">
+                     <h3>Booked Appointments</h3>
+                     <h1>{{ total_appointments }}</h1>
+                  </div>
+                  <div class="progress">
+                     <svg class="progress-svg">
+                        <circle cx="38" cy="38" r="36"></circle>
+                     </svg>
+                     <div class="number">
+                        <p class="available-percentage">{{ appointment_percentage }}%</p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!--End of booked appointments-->
+
+            <!--Start of approved appointments-->
+            <div class="approved">
+               <span class="material-symbols-sharp">calendar_clock</span>
+               <div class="middle">
+                  <div class="left">
+                     <h3>Scheduled Appointments</h3>
+                     <h1>{{ scheduled_appointments }}</h1>
+                  </div>
+                  <div class="progress">
+                     <svg class="progress-svg">
+                        <circle cx="38" cy="38" r="36"></circle>
+                     </svg>
+                     <div class="number">
+                        <p class="available-percentage">{{ scheduled_percentage }}%</p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!---End of approved appointments-->
+
+            <!--Start of approved appointments-->
+            <div class="booked">
+               <span class="material-symbols-sharp">cancel</span>
+               <div class="middle">
+                  <div class="left">
+                     <h3>Failed Appointments</h3>
+                     <h1>{{ failed_appointments }}</h1>
+                  </div>
+                  <div class="progress">
+                     <svg class="progress-svg">
+                        <circle cx="38" cy="38" r="36"></circle>
+                     </svg>
+                     <div class="number">
+                        <p class="available-percentage">{{ failed_percentage }}%</p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!---End of approved appointments-->
+
+            <!--Start of approved appointments-->
+            <div class="booked">
+               <span class="material-symbols-sharp">event_busy</span>
+               <div class="middle">
+                  <div class="left">
+                     <h3>Canceled Appointments</h3>
+                     <h1>{{ canceled_appointments }}</h1>
+                  </div>
+                  <div class="progress">
+                     <svg class="progress-svg">
+                        <circle cx="38" cy="38" r="36"></circle>
+                     </svg>
+                     <div class="number">
+                        <p class="available-percentage">{{ canceled_percentage }}%</p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!---End of approved appointments-->
+
+            <!--Start of payments-->
+            <div class="paid">
+               <span class="material-symbols-sharp">order_approve</span>
+               <div class="middle">
+                  <div class="left">
+                     <h3>Completed Appointments</h3>
+                     <h1>{{ completed_appointments }}</h1>
+                  </div>
+                  <div class="progress">
+                     <svg class="progress-svg">
+                        <circle cx="38" cy="38" r="36"></circle>
+                     </svg>
+                     <div class="number">
+                        <p class="available-percentage">{{ completed_percentage }}%</p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!--End of payments-->
+
+            <!--Start of payments-->
+            <div class="paid">
+               <span class="material-symbols-sharp">order_approve</span>
+               <div class="middle">
+                  <div class="left">
+                     <h3>Closed Appointments</h3>
+                     <h1>{{ closed_appointments }}</h1>
+                  </div>
+                  <div class="progress">
+                     <svg class="progress-svg">
+                        <circle cx="38" cy="38" r="36"></circle>
+                     </svg>
+                     <div class="number">
+                        <p class="available-percentage">{{ closed_percentage }}%</p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!--End of payments-->
+         </div>
+         <!--End of insights-->
+      </main>
+      <!--End of main-->
+
+      <div class="right">
+         <div class="top">
+            <button class="menu-btn" id="menu-btn">
+               <span class="material-symbols-sharp">menu</span>
+            </button>
+            <div class="theme-toggler" id="theme-toggler">
+               <span class="material-symbols-sharp active">light_mode</span>
+               <span class="material-symbols-sharp">dark_mode</span>
+            </div>
+            <div class="profile">
+               <div class="info">
+                  <p>Hey, <b>{{request.user.username}}</b></p>
+                  <small class="text-muted">Student patient</small>
+               </div>
+               <div class="profile-photo">
+                  <a href="{% url 'update-patient-profile' request.user.username %}">
+                  {% if user.profile_photo %}
+                      <img src="{{user.profile_photo.url}}"></a>
+                  {% else %}
+                      <img src="{% static 'appoint_app/images/profile.png' %}"></a>
+                  {% endif %}
+               </div>
+            </div>
+         </div>
+         <!--End of Top-->
+
+         <div class="recent-updates">
+            <h2>Account<span class="material-symbols-sharp">
+               verified
+               </span></h2>
+            <div class="updates">
+               <div class="update">
+                  <div class="profile-photo">
+                     <a href="{% url 'update-patient-profile' request.user.username %}">
+                     {% if user.profile_photo %}
+                         <img src="{{user.profile_photo.url}}"></a>
+                     {% else %}
+                         <img src="{% static 'appoint_app/images/profile.png' %}"></a><span class="material-symbols-sharp">
+                           verified
+                           </span>
+                     {% endif %}
+                  </div>
+                  <div class="message">
+                     <span style="color: rgb(255, 0, 55); font-weight: 650;">STUDENT COVER</span>
+                     <p><b>{{request.user.patient_id}}</b></p>
+                     <small style="color: rgb(3, 189, 12); font-weight: 650;">Active</small>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!--End of recent updates-->
+         
+         <div class="payment-analytics">
+            <h2>Your Payment Methods</h2>
+            <div class="item mpesa">
+               <div class="icon">
+                  <span>
+                     <img src="{% static 'appoint_app/images/mpesa.svg' %}" alt="M-Pesa Icon" style="height: 33px; width: 33px; vertical-align: middle; display: inline-block;">
+                  </span>
+               </div>
+               <div class="right">
+                  <div class="info">
+                     <h3><a href="#">M-PESA</a></h3>
+                     <small class="text-muted">{{mpesa}} Transactions</small>
+                  </div>
+               </div>
+            </div>
+
+            <div class="item student-cover">
+               <div class="icon">
+                  <span class="material-symbols-sharp" style="height: 33px; width: 33px; padding: 4.1px; vertical-align: middle; display: inline-block;">check_circle</span>
+               </div>
+               <div class="right">
+                  <div class="info">
+                     <h3>STUDENT COVER</h3>
+                     <small class="text-muted">Active</small>
+                  </div>
+               </div>
+            </div>
+
+
+            <h2>Quick Actions</h2>
+            <div class="item create-appointment">
+               <div>
+                  <span class="material-symbols-sharp"><a href="{% url 'create-appointment-patient' %}" class="create-doctor">add</a></span>
+                  <h3><a href="{% url 'create-appointment-patient' %}" class="create-doctor">New Appointment</a></h3>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <script src="{% static 'appoint_app/js/master_scripts.js' %}"></script>
+   <script src="{% static 'appoint_app/js/my_theme.js' %}"></script>
+   <script src="{% static 'appoint_app/js/progress_bar.js' %}"></script>
+   <script src="{% static 'appoint_app/js/date_time.js' %}"></script>
+</body>
+</html>
+{% endif %}

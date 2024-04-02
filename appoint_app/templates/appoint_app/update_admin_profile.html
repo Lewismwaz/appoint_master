@@ -1,0 +1,73 @@
+{% if request.user.is_authenticated%}
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html class="h-full bg-violet-50" lang="en">
+	<head>
+        <title>Appoint-Master | Update Profile@Admin</title>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta http-equiv="X-UA-Compatible" content="ie=edge">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+            <link rel="stylesheet" href="{% static 'appoint_app/css/messages.css' %}">
+			<script src="{% static 'appoint_app/js/dob_script.js' %}"></script>
+        {% tailwind_css %}
+	</head>
+	<body>
+		<div class="flex min-h-full flex-col justify-center px-10 py-10 lg:px-8">
+            <div class="message-container">
+				{% if messages %}
+				{% for message in messages %}
+				<div class="message {% if message.tags == 'success' %}message-success{% elif message.tags == 'error' %}message-error{% endif %}">
+					{{ message }}
+				</div>
+				{% endfor %}
+				{% endif %}
+			</div>	
+			<div class="sm:mx-auto sm:w-full sm:max-w-sm">
+			  <img class="mx-auto h-10 top-1 w-auto" src="{% static 'appoint_app/images/appoint-master-logo.png' %}" alt="Logo">
+			  <h2 class="mt-2 text-center text-2xl font-bold leading-9 tracking-tight text-blue-800">Update Profile</h2>
+			</div>
+		  
+			<div class="update-admin-form-admin mt-1 sm:mx-auto sm:w-full sm:max-w-sm">
+				<form action="{% url 'update-admin-profile' admin_username=profile.username %}" method="POST" enctype="multipart/form-data">
+					{% csrf_token %}
+					{% for field in form %}
+					<div>
+						<label class="form-label">{{ field.label }}</label>
+						{% if field.name == 'profile_photo' %}
+						<div class="flex flex-col items-center mt-2 justify-center relative">
+							{% if profile.profile_photo %}
+							<img src="{{ profile.profile_photo.url }}" alt="+" class="w-24 h-24 rounded-full mt-2 cursor-pointer bg-violet-100" onclick="choosePhoto()">
+							{% else %}
+							<label for="id_profile_photo" class="w-full rounded-full border-1 border-none cursor-pointer flex  items-center justify-center font-semibold text-red-700">Choose Photo</label>
+							{% endif %}
+							<input type="file" id="id_profile_photo" name="profile_photo" accept="image/*" class="hidden" onchange="showPreview(this)">
+						</div>
+						{% else %}
+						{{ field }}
+						{% endif %}
+						{% if field.errors %}
+						<div class="text-red-500 text-sm mt-1 font-semibold">
+							{% for error in field.errors %}
+							{{ error }}
+							{% endfor %}
+						</div>
+						{% endif %}
+					</div>
+					{% endfor %}
+					<div class="mt-5 flex justify-center">
+						<button type="submit" class="relative w-full border-0 py-1.5 items-center justify-center bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 focus:outline-none focus:ring focus:ring-purple-300 active:bg-blue-700 rounded-full text-white font-semibold shadow-md transition duration-300 ease-in-out transform hover:scale-105">Update Profile</button>
+					</div>
+				</form>
+				<p class="mt-5 mb-12 text-center text-sm text-gray-500">
+					Back to
+					<a href="/" class="font-semibold text-indigo-600 hover:text-indigo-500">Dashboard</a>
+				</p>
+			</div>	
+			
+		</div>
+		<script src="{% static 'appoint_app/js/profile_photo.js' %}"></script>
+		<script src="{% static 'appoint_app/js/register_patient.js' %}"></script>
+	</body>
+</html>
+{% endif %}

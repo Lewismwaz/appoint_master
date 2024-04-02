@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+{% load static %}
+{% load tz %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Appoint Master | Appointments Queue</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body>
+<div class="container pt-4">
+    <section class="d-flex bg-primary justify-content-between align-items-center p-1 mb-2 text-white rounded">
+        <a href="/">
+            <img src="{% static 'appoint_app/images/appoint-master-logo.png' %}" width="37" height="37" alt="Logo">
+        </a>
+        <div>
+            <h6 style="font-size: 14.6px">PENDING APPOINTMENTS</h6>           
+        </div>
+        {% if user.profile_photo %}
+            <img src="{{user.profile_photo.url}}" alt="Profile Picture" style="height: 37px; width: 37px; border-radius: 50%;"></a>
+        {% else %}
+            <img src="{% static 'appoint_app/images/profile.png' %}" alt="Profile Picture" style="height: 37px; width: 37px; border-radius: 50%;"></a>
+        {% endif %}
+        <div>
+            <h6 style="font-size: 14.4px">Doctor: {{user.first_name}} {{user.last_name}}</h6>
+        </div>
+        <div>
+            <h6  style="font-size: 14.4px">Specialization: {{user.specialization}}</h6>
+        </div>
+        <div class="mb-2">
+            <span id="real-time-clock" style="font-weight: 700; font-size: 14.5px;">
+                {% localtime on %}
+                    {% now "l, F j, Y H:i:s" %}
+                {% endlocaltime %}
+            </span>
+        </div>
+    </section>
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered" style="font-size: 13.9px">
+                    <thead>
+                        <tr>
+                            <th>Appointment ID</th>
+                            <th>Assigned Patient</th>
+                            <th>Patient Profile</th>
+                            <th>Patient Type</th>
+                            <th>Patient Gender</th>
+                            <th>Booked</th>
+                            <th>Scheduled</th>
+                            <th>Resolved</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for appointment in appointments %}
+                            <tr>
+                                <td>{{ appointment.appoint_id }}</td>                           
+                                <td>
+                                {{ appointment.appointee }}
+                                </td>
+                                <td>
+                                {% if appointment.appointee.profile_photo %}
+                                    <img src="{{ appointment.appointee.profile_photo.url }}" alt="Profile Picture" style="height: 37px; width: 37px; text-align:center; border-radius: 50%;">
+                                {% else %}
+                                    <img src="{% static 'appoint_app/images/profile.png' %}" alt="Default Profile Picture" style="height: 37px; width: 37px; text-align:center; border-radius: 50%;">
+                                {% endif %}
+                                </td>
+                                <td>{{ appointment.patient_type }}</td>
+                                <td>{{ appointment.appointee.gender }}</td>
+                                <td>{{ appointment.book_time }}</td>
+                                {% if appointment.appoint_time %}
+                                <td>{{ appointment.appoint_time }}</td>
+                                {% else %}
+                                    <td>--</td>
+                                {% endif %}
+                                <td>
+                                {% if appointment.is_resolved %}
+                                    <strong style="color:rgb(12, 189, 26);">{{ appointment.get_is_resolved_display }}</strong>
+                                {% else %}
+                                    <strong style="font-weight: 700; color:rgb(230, 38, 54);">{{ appointment.get_is_resolved_display }}</strong>
+                                {% endif %}
+                                </td>
+                                <td>
+                                    {% if appointment.appoint_status == 'Pending' %}
+                                        <strong style="color:rgb(252, 152, 2);">{{ appointment.appoint_status }}</strong>
+                                    {% elif appointment.appoint_status == 'Failed' %}
+                                        <strong style="color:rgb(255, 37, 37);">{{ appointment.appoint_status }}</strong>
+                                    {% elif appointment.appoint_status == 'Scheduled' %}
+                                        <strong style="color:rgb(10, 159, 179);">{{ appointment.appoint_status }}</strong>
+                                    {% elif appointment.appoint_status == 'Canceled' %}
+                                        <strong style="color:rgb(230, 38, 54);">{{ appointment.appoint_status }}</strong>
+                                    {% elif appointment.appoint_status == 'Completed' %}
+                                        <strong style="color:rgb(3, 168, 17);">{{ appointment.appoint_status }}</strong>
+                                    {% endif %}
+                                </td>
+                                
+                            </tr>
+                        {% endfor %}
+                </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <p class="mt-4 text-center text-sm text-gray-500">
+        <a href="/" style="text-decoration: none; color: rgb(74, 17, 206); font-weight: 600;">Back</a>
+    </p>
+</div>
+<style>
+    footer {
+        font-size: 13px;
+    }
+</style>
+<footer class="container-fluid bg-primary fixed-bottom text-white  text-bold text-center">
+    <img src="{% static 'appoint_app/images/appoint-master-logo.png' %}" width="30" height="30" alt="Logo"> ©
+  2024 Appoint Master, KUHC
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script src="{% static 'appoint_app/js/date_time.js' %}"></script>
+</body>
+</html>

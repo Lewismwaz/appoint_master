@@ -1,0 +1,116 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html class="h-full" lang="en">
+<head>
+    <title>Appoint-Master | Book Appointment</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'appoint_app/css/messages.css' %}">
+    {% tailwind_css %}
+</head>
+<body style="background-color: aliceblue;">
+<div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+    <div class="message-container">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="message {% if message.tags == 'success' %}message-success{% elif message.tags == 'error' %}message-error{% endif %}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+    <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+        <img class="mx-auto h-10 top-1 w-auto" src="{% static 'appoint_app/images/appoint-master-logo.png' %}" alt="Logo">
+        <h2 class="mt-2 text-center text-2xl font-bold leading-9 tracking-tight text-blue-800">Book New Appointment</h2>
+    </div>
+
+    <div class="create-appointment-form-patient mt-1 sm:mx-auto sm:w-full sm:max-w-sm">
+        <form class="space-y-4" action="{% url 'create-appointment-next-of-kin' %}" method="POST">
+            {% csrf_token %}
+            {% for field in form %}
+                <div>
+                    {{ field.label_tag }}
+                    {% if field.name == 'appoint_time' %}
+                        <input type="datetime-local" name="{{ field.name }}" id="{{ field.id }}" class="block w-full mb-2 mt-2 rounded-full border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    {% else %}
+                        {{ field }}
+                    {% endif %}
+                    {% if field.errors %}
+                        <div class="text-red-500 text-sm mt-1 text-semibold">
+                            {% for error in field.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+            <div class="mt-5 flex justify-center">
+                <button type="submit" class="relative w-full border-0 py-1.5 items-center justify-center bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 focus:outline-none focus:ring focus:ring-purple-300 active:bg-blue-700 rounded-full text-white font-semibold shadow-md transition duration-300 ease-in-out transform hover:scale-105">Submit</button>
+            </div>
+        </form>
+        <p class="mt-4 text-center text-sm text-gray-500">
+            Back to
+            <a href="/" class="font-semibold text-indigo-600 hover:text-indigo-500">Dashboard</a>
+        </p>
+        <p class="mt-4 text-center text-sm text-gray-500">
+            Update
+            <a href="{% url 'update-next-kin'  patient_username=request.user.username %}" class="font-semibold text-indigo-600 hover:text-indigo-500">Next of Kin</a>
+        </p>
+    </div>
+</div>
+{% block scripts %}
+<script>
+    // Function to disable time slots from 12pm to 1:59pm
+    $(document).ready(function() {
+        // Get the datetime-local input element
+        var appointTimeInput = document.getElementById('id_appoint_time');
+
+        // Add event listener to restrict time selection
+        appointTimeInput.addEventListener('input', function() {
+            var selectedDate = new Date(this.value);
+            var selectedHour = selectedDate.getHours();
+            var selectedMinute = selectedDate.getMinutes();
+
+            // Round the minutes to either '00' or '30'
+            if (selectedMinute < 15) {
+                selectedMinute = '00';
+            } else if (selectedMinute < 45) {
+                selectedMinute = '30';
+            } else {
+                selectedMinute = '00';
+                selectedHour += 1; // Increment the hour if rounding up
+            }
+
+            // Set the rounded time back to the input value
+            this.value = formatDate(selectedDate.getFullYear(), selectedDate.getMonth() + 1, selectedDate.getDate(), selectedHour, selectedMinute);
+
+            // Check if selected time is after 4:30pm
+            if (selectedHour > 16 || (selectedHour === 16 && selectedMinute > 30)) {
+                alert('Please select a time no later than 4:30pm.');
+                this.value = ''; // Clear the input value
+            }
+
+            // Check if selected time is between 12pm and 1:59pm
+            if (selectedHour >= 12 && selectedHour < 14) {
+                alert('Please select a time slot between 8:30am and 11:30am or from 2:00pm to 4:30pm.');
+                this.value = ''; // Clear the input value
+            }
+        });
+
+        // Function to format date and time to ISO string
+        function formatDate(year, month, day, hour, minute) {
+            var dateString = year + '-' + pad(month) + '-' + pad(day) + 'T' + pad(hour) + ':' + pad(minute);
+            return dateString;
+        }
+
+        // Function to pad single digits with leading zero
+        function pad(num) {
+            return (num < 10 ? '0' : '') + num;
+        }
+    });
+</script>
+{% endblock scripts %}
+</body>
+</html>

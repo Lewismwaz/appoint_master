@@ -1,0 +1,28 @@
+.messages {
+    text-align: center;
+    margin: 0 auto;
+    font-weight: bold;
+}
+
+.message-container {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.message {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    font-weight: bold;
+}
+
+.message-success {
+    background-color: #d1f5d3;
+    color: #4caf50;
+}
+
+.message-error {
+    background-color: #f8d7da;
+    color: #b12130;
+}

@@ -1,0 +1,102 @@
+{% if request.user.is_authenticated %}
+{% load tz %}
+<!DOCTYPE html>
+{% load static %}
+<html class="h-full bg-violet-50" lang="en">
+	<head>
+	    <title>Appoint-Master | View all Appointments@Doctor</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+		<link rel="stylesheet" href="{% static 'appoint_app/css/styles_portal.css' %}">
+	</head>
+	<body>
+		<main class="table">
+            <section class="table__header">
+                <a class="navbar-brand" href="{% url 'home'%}">
+                    <img src="{% static 'appoint_app/images/appoint-master-logo.png' %}" width="37" height="37"
+                        alt="Logo">
+                </a>
+                <h1>ALL APPOINTMENTS</h1>
+                <h1>Doctor: {{user.first_name}} {{user.last_name}}</h1>
+                <h1>ID: {{user.doctor_id}}</h1>
+                <h1>Specialization: {{user.specialization}}</h1>
+                <button class="body-btn-report"><a href="#" class="btn-link">Report</a></button>
+                <div class="nav-item mx-2">
+                    <span id="real-time-clock" class="nav-link">
+                        {% localtime on %}
+                            {% now "l, F j, Y H:i:s" %}
+                        {% endlocaltime %}
+                    </span>
+                </div>
+            </section>
+            <section class="table__body">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Appointment ID</th> 
+                            <th>Resolved?</th> 
+                            <th>Assigned Patient</th>                              
+                            <th>Patient Profile</th>                                                          
+                            <th>Patient Type</th>
+                            <th>Patient ID</th>
+                            <th>Booked</th>
+                            <th>Approved</th>
+                            <th>Scheduled</th>
+                            <th>Closed</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for appointment in appointments_list %}
+                        <tr>
+                            <td>{{ forloop.counter }}.</td>
+                            <td>{{ appointment.appoint_id }}</td>                                
+                            <td class="status-container">
+                                {% if appointment.is_resolved %}
+                                    <strong class="status-completed">{{ appointment.get_is_resolved_display }}</strong>
+                                {% else %}
+                                    <strong class="status-failed">{{ appointment.get_is_resolved_display }}</strong>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {{ appointment.appointee }}
+                            </td>
+                            <td>
+                                {% if appointment.appointee.profile_photo %}
+                                    <img src="{{ appointment.appointee.profile_photo.url }}" alt="Profile Picture">
+                                {% else %}
+                                    <img src="{% static 'appoint_app/images/profile.png' %}" alt="Default Profile Picture">
+                                {% endif %}
+                            </td>
+                            
+                            <td>{{ appointment.patient_type }}</td>
+                            <td>{{ appointment.appointee.patient_id }}</td>
+                            <td>{{ appointment.book_time }}</td>
+                            <td>{{ appointment.approve_date }}</td>
+                            <td>{{ appointment.appoint_time }}</td>
+                            <td>{{ appointment.close_date }}</td>
+                            <td class="status-container">
+                                {% if appointment.appoint_status == 'Failed' %}
+                                    <strong class="status-failed">{{ appointment.appoint_status }}</strong>
+                                {% elif appointment.appoint_status == 'Scheduled' %}
+                                    <strong class="status-scheduled">{{ appointment.appoint_status }}</strong>
+                                {% elif appointment.appoint_status == 'Canceled' %}
+                                    <strong class="status-canceled">{{ appointment.appoint_status }}</strong>
+                                {% elif appointment.appoint_status == 'Completed' %}
+                                    <strong class="status-completed">{{ appointment.appoint_status }}</strong>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </section>
+        </main>
+        <script src="{% static 'appoint_app/js/date_time.js' %}"></script>
+	</body>
+</html> 
+{% endif %}
+

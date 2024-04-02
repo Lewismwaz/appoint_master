@@ -1,0 +1,132 @@
+button-container {
+    top:0;
+}
+
+table {
+    font-size: 15px;
+}
+
+.btn-link-cancel {
+    text-decoration: none; /* Remove underline */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    font-weight: 600;
+    color: rgb(112, 0, 62);
+}
+
+.btn-link-update {
+    text-decoration: none; /* Remove underline */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    font-weight: 600;
+    color: rgb(112, 0, 62);
+}
+
+.btn-link-delete {
+    text-decoration: none; /* Remove underline */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    font-weight: 600;
+    color: rgb(141, 0, 0);
+}
+
+.btn-delete {
+    text-align: center;
+    background-color: rgb(255, 50, 50);
+    color: rgb(165, 0, 14);
+    padding: .1rem 0;
+    border-radius: .4rem;
+    border: none;
+    padding-left: 4px;
+    padding-right: 4px;
+    margin-bottom: 1px;
+    margin-top: -2px;
+    align-self: center;
+}
+
+
+.btn-cancel {
+    text-align: center;
+    background-color: rgb(255, 88, 157);
+    color: rgb(37, 1, 21);
+    padding: .1rem 0;
+    border-radius: .4rem;
+    border: none;
+    padding-left: 4px;
+    padding-right: 4px;
+    margin-bottom: 1px;
+    margin-top: -2px;
+    align-self: center;
+}
+
+.btn-update {
+    text-align: center;
+    background-color: rgb(86, 111, 255);
+    color: rgb(37, 1, 21);
+    padding: .1rem 0;
+    border-radius: .4rem;
+    border: none;
+    padding-left: 4px;
+    padding-right: 4px;
+    margin-bottom: 1px;
+    margin-top: -2px;
+    align-self: center;
+}
+
+
+.status-pending {
+    text-align: center;
+    background-color: rgb(252, 249, 98);
+    color: rgb(129, 81, 17);
+    padding: .2rem 0;
+    border-radius: .4rem;
+    padding-left: 4px;
+    padding-right: 4px;
+    margin-top: 2px;
+    align-self: center;
+}
+
+.status-failed {
+    text-align: center;
+    background-color: rgb(255, 186, 106);
+    color: rgb(109, 17, 40);
+    padding: .2rem 0;
+    border-radius: .4rem;
+    padding-left: 4px;
+    padding-right: 4px;
+    margin: 2px;
+    align-self: center;
+}
+
+.status-scheduled {
+    text-align: center;
+    background-color: rgb(110, 255, 224);
+    color: rgb(0, 94, 55);
+    padding: .2rem 0;
+    border-radius: .4rem;
+    padding-left: 4px;
+    padding-right: 4px;
+    margin: 2px;
+    align-self: center;
+}
+
+.status-canceled {
+    text-align: center;
+    background-color: rgb(255, 88, 157);
+    color: rgb(112, 35, 22);
+    padding: .2rem 0;
+    border-radius: .4rem;
+    padding-left: 4px;
+    padding-right: 4px;
+    margin: 2px;
+    align-self: center;
+}
+
+.status-completed {
+    text-align: center;
+    background-color: rgb(50, 248, 60);
+    color: rgb(12, 77, 28);
+    padding: .2rem 0;
+    border-radius: .4rem;
+    padding-left: 4px;
+    padding-right: 4px;
+    margin: 2px;
+    align-self: center;   
+}

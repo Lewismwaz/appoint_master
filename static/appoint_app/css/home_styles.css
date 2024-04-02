@@ -1,0 +1,314 @@
+/* Common style start*/
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+button,
+body {
+    font-family: "Noto Sans", sans-serif;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+p {
+    font-size: 15px;
+    line-height: 26px;
+}
+
+.fullContainer {
+    width: 100%;
+}
+
+.container {
+    width: 1140px; 
+    max-width: auto;   
+}
+
+.sectionTitle {
+    width: 300px;
+    border-bottom: 3px solid #020eb9;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 200;
+    margin: 0 auto 50px;
+    position: relative;
+    padding: 10px 0;
+    text-transform: uppercase;
+}
+
+.sectionTitle::after {
+    display: inline-block;
+    content: "";
+    height: 15px;
+    width: 15px;
+    background-color:#020eb9;
+    position: absolute;
+    left: calc(50% - 10px);
+    top: calc(75% - 3px);
+    transform: rotate(45deg) translate(50%, 50%);
+    border: 3px solid #fff;
+}
+
+section {
+    position: relative;
+}
+
+
+/* Common style end */
+
+/*Home Style start*/
+.banner4 {
+    min-height: 100vh;
+    width: 100%;
+    background-image: url("../images/home/k.png");
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.banner4 h1 {
+    margin-top: 230px;
+    display: inline-block;
+    text-align: center;
+    font-size: 3.0rem;
+    color: #fff;
+    width: 50%;
+    line-height: 4.2rem;
+    font-weight: 200;
+}
+
+.banner4 h1 span {
+    background-color: #020eb9;
+    display: inline-block;
+    line-height: 3.0rem;
+    padding: 0 16px;
+    padding-bottom: 3px;
+    font-weight: 500;
+    border-radius: 2px;
+}
+
+.banner4 p {
+    color: #ffffff;
+    width: 50%;
+    margin-top: 10px;
+}
+
+.banner4 button {
+    background-color: #020eb9;
+    border: 0;
+    outline: none;
+    color:#fff;
+    font-weight: 700;
+    padding: 10px 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 15px;
+    border-radius: 9px;
+   
+}
+
+/*Home Style end*/
+
+/*AboutusSection style start*/
+#About .cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    position: relative;
+    height: 225px;
+}
+
+#About .cards > div {
+    width: 360px;
+    background-color: #e6e6e6;
+    padding: 20px;
+    border-radius: 5px;
+    color: #000000;
+    text-align: center;
+    height: 220px;
+    border: 1.5px solid #e6e6e6;
+    transition: 0.5s;
+}
+
+#About .cards > div:hover {
+    width: 370px;
+    margin-top: 0px;
+    border-color: #ff006a;
+    padding: 30px;
+    height: auto;
+}
+
+#About .cards > div .title {
+    font-size: 17px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+#About .cards > div p {
+    font-size: 13px;
+    
+}
+#About .cards > div button {
+    background-color: #020eb9;
+    border: 0;
+    outline: none;
+    color:#fff;
+    font-weight: 500;
+    padding: 6px 15px;
+    margin-top: 0px;
+    font-size: 13px;
+    cursor: pointer;
+    border-radius: 20px;
+    transition: 0.4s;
+    margin-bottom: 5px;
+}
+
+#About .cards > div:hover button {
+    background-color: #ff006a;
+    color: #ffffff
+}
+
+#About h2 {
+    font-weight: 700;
+    color:#020eb9;
+}
+
+#About {
+    padding: 60px 5px;
+}
+
+#Services {
+    padding: 60px 5px;
+}
+/*About us style end */
+
+/*Services Style start*/
+/* .services {
+    background: color #e22ee2;
+} */
+
+.services h2 {
+    font-weight: 700;
+    color:#020eb9;
+}
+
+.services .boxContainer {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+}
+
+.services .boxContainer .box {
+    background-color: #fff;
+    text-align: center;
+    padding-bottom: 25px;
+    border-radius: 5px;
+    box-shadow: 0 0 3px 0 #c5c5c5;
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.services .boxContainer .box .cardImage {
+    width: 100%;
+    height: 300px;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px 5px 0 0;
+}
+
+.services .boxContainer .box .cardImage:after {
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    filter: grayscale(100%);
+    transition: 0.4s;
+}
+
+.services .boxContainer .box:nth-child(1) .cardImage,
+.services .boxContainer .box:nth-child(1) .cardImage:after {
+    background-image: url("../images/home/7.jpg");
+}  
+
+.services .boxContainer .box:nth-child(2) .cardImage,
+.services .boxContainer .box:nth-child(2) .cardImage:after {
+    background-image: url("../images/home/2.jpg");
+}
+
+.services .boxContainer .box:nth-child(3) .cardImage,
+.services .boxContainer .box:nth-child(3) .cardImage:after {
+    background-image: url("../images/home/4.jpg");
+}
+
+.services .boxContainer .box:nth-child(4) .cardImage,
+.services .boxContainer .box:nth-child(4) .cardImage:after {
+    background-image: url("../images/home/10.jpg");
+}
+
+.services .boxContainer .box:nth-child(5) .cardImage,
+.services .boxContainer .box:nth-child(5) .cardImage:after {
+    background-image: url("../images/home/9.jpg");
+}
+
+.services .boxContainer .box:nth-child(6) .cardImage,
+.services .boxContainer .box:nth-child(6) .cardImage:after {
+    background-image: url("../images/home/6.jpg");
+}
+
+.services .boxContainer .box:nth-child(7) .cardImage,
+.services .boxContainer .box:nth-child(7) .cardImage:after {
+    background-image: url("../images/home/3.jpg");
+}
+
+.services .boxContainer .box:nth-child(8) .cardImage,
+.services .boxContainer .box:nth-child(8) .cardImage:after {
+    background-image: url("../images/home/5.jpg");
+}
+
+.services .boxContainer .box:hover .cardImage:after {
+    top: 100%;
+}
+
+.services .boxContainer .box .serviceTitle {
+    font-size: 16px;
+    margin-top: 15px;
+    font-weight: 700;
+    color: #000000
+}
+
+.services .boxContainer .box .serviceCount {
+    font-size: 13px;
+    font-weight: 600;
+    color: #000000;
+    margin-top: 8px;
+}
+
+.services .boxContainer .box .serviceCount span {
+    color: #020eb9;
+}
+
+.services .boxContainer .box button {
+    position: absolute;
+    left: 50%;
+    background-color: #020eb9;
+    font-size: 13px;
+    color: #ffffff;
+    transform: translate(-50%);
+    bottom: -15px;
+    border-radius: 60px;
+    padding: 7px 15px;
+    border: 0;
+    outline: none;
+    cursor: pointer;
+}
+/*Services Style end */

@@ -1,0 +1,71 @@
+{% if request.user.is_authenticated %}
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html class="h-full bg-violet-50" lang="en">
+<head>
+    <title>Appoint-Master | Update Profile@Patient_NextOfKin</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    <link rel="stylesheet" href="{% static 'appoint_app/css/messages.css' %}">
+    {% tailwind_css %}
+</head>
+<body>
+<div class="flex min-h-full flex-col justify-center px-10 py-10 lg:px-8">
+    <div class="message-container">
+        {% if messages %}
+        {% for message in messages %}
+        <div class="message {% if message.tags == 'success' %}message-success{% elif message.tags == 'error' %}message-error{% endif %}">
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+    <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+        <img class="mx-auto h-10 top-1 w-auto" src="{% static 'appoint_app/images/appoint-master-logo.png' %}" alt="Logo">
+        <h2 class="mt-2 text-center text-2xl font-bold leading-9 tracking-tight text-blue-800">Next of Kin</h2>
+    </div>
+
+    <div class="update-patient-next-kin-form-patient m-4 sm:mx-auto sm:w-full sm:max-w-sm">
+        {% if not request.user.has_next_of_kin %}
+        <form action="{% url 'update-patient-next-kin' patient_username=request.user.username %}" method="POST">
+            {% csrf_token %}
+            <!-- Render next of kin form fields -->
+            {{ next_of_kin_form.as_p }}
+            <div class="text-center">
+                <button type="submit" style="background: rgb(19, 184, 41); border-radius: 10px; margin-left: 7px; margin-right: 7px; margin-top:6px; padding: 4px; padding-right: 4px; padding-left: 4px; color: white; font-weight: 600; display: inline-block;">Add</button>
+            </div>
+        </form>
+        {% else %}
+        <!-- Display next of kin details if available -->
+        <form action="{% url 'update-patient-next-kin' patient_username=request.user.username %}" method="POST">
+            {% csrf_token %}
+            {{ next_of_kin_form.as_p }}
+            <div class="text-center mt-2">
+                <button type="submit" style="background: rgb(19, 184, 41); border-radius: 10px; margin-left: 4px; margin-right: 4px; margin-top:6px; padding: 4px; padding-right: 9px; padding-left: 9px; color: white; font-weight: 600; display: inline-block;">Update</button>
+            </div>
+        </form>
+        {% endif %}
+    
+        <!-- Delete next of kin button -->
+        {% if request.user.has_next_of_kin %}
+        <div class="text-center mt-2">
+            <form action="{% url 'delete-next-of-kin' %}" method="POST">
+                {% csrf_token %}
+                <button type="submit" style="background: rgb(228, 11, 76); border-radius: 10px; margin-left: 4px; margin-right: 4px; margin-top:6px; padding: 4px; padding-right: 9px; padding-left: 9px; color: white; font-weight: 600; display: inline-block;">Delete</button>
+            </form>
+        </div>
+        {% endif %}
+    </div>
+    <p class="mt-2 text-center text-md text-gray-500">
+       Back to
+        <a href="{% url 'update-patient-profile' request.user.username %}" style="text-decoration: none; color: rgb(74, 17, 206); font-weight: 600;">Profile</a>
+    </p> 
+    <p class="mt-4 text-center text-sm text-gray-500">
+        Back to
+        <a href="/" style="text-decoration: none; color: rgb(74, 17, 206); font-weight: 600;">Dashboard</a>
+    </p> 
+</body>
+</html>
+{% endif %}

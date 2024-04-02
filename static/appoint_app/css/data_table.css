@@ -1,0 +1,66 @@
+td img {
+    width: 36px;
+    height: 36px;
+    margin-right: 2rem;
+    border-radius: 50%;
+}
+
+.status-pending {
+    text-align: center;
+    background-color: rgb(253, 195, 87);
+    color: rgb(129, 81, 17);
+    padding: .2rem 0;
+    border-radius: .4rem;
+    padding-left: 4px;
+    padding-right: 4px;
+    margin: 2px;
+    align-self: center;
+}
+
+.status-failed {
+    text-align: center;
+    background-color: rgb(250, 112, 123);
+    color: rgb(109, 17, 40);
+    padding: .2rem 0;
+    border-radius: .4rem;
+    padding-left: 4px;
+    padding-right: 4px;
+    margin: 2px;
+    align-self: center;
+}
+
+.status-scheduled {
+    text-align: center;
+    background-color: rgb(110, 255, 224);
+    color: rgb(0, 117, 68);
+    padding: .2rem 0;
+    border-radius: .4rem;
+    padding-left: 4px;
+    padding-right: 4px;
+    margin: 2px;
+    align-self: center;
+}
+
+.status-canceled {
+    text-align: center;
+    background-color: rgb(250, 112, 146);
+    color: rgb(112, 35, 22);
+    padding: .2rem 0;
+    border-radius: .4rem;
+    padding-left: 4px;
+    padding-right: 4px;
+    margin: 2px;
+    align-self: center;
+}
+
+.status-completed {
+    text-align: center;
+    background-color: rgb(50, 248, 60);
+    color: rgb(12, 77, 28);
+    padding: .2rem 0;
+    border-radius: .4rem;
+    padding-left: 4px;
+    padding-right: 4px;
+    margin: 2px;
+    align-self: center;   
+}

@@ -1,0 +1,116 @@
+{% if request.user.is_authenticated %}
+{% load tz %}
+<!DOCTYPE html>
+{% load static %}
+<html class="h-full bg-violet-50" lang="en">
+<head>
+    <title>Appoint-Master | Manage all Payments@Admin</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.2/css/dataTables.bootstrap5.css" />
+    <link rel="stylesheet" href="{% static 'appoint_app/css/view_table.css' %}">
+
+    <script defer src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script defer src="https://cdn.datatables.net/2.0.2/js/dataTables.js"></script>
+    <script defer src="https://cdn.datatables.net/2.0.2/js/dataTables.bootstrap5.js"></script>
+    <script defer src="{% static 'appoint_app/js/table.js' %}"></script>
+    <script defer src="{% static 'appoint_app/js/date_time.js' %}"></script>
+    
+</head>
+<body>
+    <div class="container pt-5">
+        <section class="d-flex bg-primary justify-content-between align-items-center p-2 mb-2 text-white rounded">
+            <a href="/">
+                <img src="{% static 'appoint_app/images/appoint-master-logo.png' %}" width="37" height="37" alt="Logo">
+            </a>
+            <div>
+                <h6 style="font-size: 14.4px">ALL USER PAYMENTS</h6>           
+            </div>
+            {% if user.profile_photo %}
+                <img src="{{user.profile_photo.url}}" alt="Profile Picture" style="height: 37px; width: 37px; border-radius: 50%;"></a>
+            {% else %}
+                <img src="{% static 'appoint_app/images/profile.png' %}" alt="Profile Picture" style="height: 37px; width: 37px; border-radius: 50%;"></a>
+            {% endif %}
+            <div>
+                <h6 style="font-size: 14.4px">Admin: {{user.first_name}} {{user.last_name}}</h6>
+            </div>
+            <div>
+                <h6 style="font-size: 14.4px">REPORT</h6>
+            </div>
+            <div class="mb-2">
+                <span id="real-time-clock" style="font-weight: 700; font-size: 14.4px;">
+                    {% localtime on %}
+                        {% now "l, F j, Y H:i:s" %}
+                    {% endlocaltime %}
+                </span>
+            </div>
+        </section>
+        <table id="example" class="table table-striped table-responsive" style="width:100%">
+            <thead>
+                 <tr>
+                    <th>Receipt Number</th>
+                    <th>Amount</th>
+                    <th>Phone Number</th>
+                    <th>Date</th>               
+                    <th>Patient</th>
+                    <th>Appoint.ID</th>
+                    <th>Reference ID</th>
+                    <th>Verified</th>
+                    <th>Reference Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for payment in all_user_payments %}
+                    <tr>
+                        <td>{{ payment.receipt_number }}</td>
+                        <td>
+                            Ksh.{{ payment.amount }}
+                        </td>
+                        <td>{{ payment.phone_number }}</td>                               
+                        <td>{{ payment.date_created }}</td>
+                        <td>{{ payment.patient }}</td>
+                        <td>
+                            {% if payment.appointment %}
+                                {{ payment.appointment }}
+                            {% else %}
+                                --
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if payment.ref %}
+                                {{ payment.ref|slice:":10" }}{% if payment.ref|length > 10 %}...{% endif %}
+                            {% else %}
+                                --
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if payment.verified %}
+                                <strong style="color:rgb(12, 189, 26);">{{ payment.verified_display }}</strong>
+                            {% else %}
+                                <strong style="font-weight: 700; color:rgb(230, 38, 54);">{{ payment.verified_display }}</strong>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if payment.email %}
+                                        {{ payment.email }}
+                            {% else %}
+                                --
+                            {% endif %}
+                        </td>
+                                
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <p class="mt-4 mb-3 text-center text-sm text-gray-500">
+        Back to
+        <a href="/" style="text-decoration: none; color: rgb(74, 17, 206); font-weight: 600;">Dashboard</a>
+        </p>  
+    </div>
+</body>
+</html> 
+{% endif %}

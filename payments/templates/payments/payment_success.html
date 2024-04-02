@@ -1,0 +1,24 @@
+{% if request.user.is_authenticated %}
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Payment Successful</title>
+    <link rel="stylesheet" href="{% static 'appoint_app/css/payment_success.css' %}" />
+</head>
+<body>
+    <div class="container">       
+        </div>
+        <div class="popup" id="popup">
+            <img src="{% static 'appoint_app/images/404-tick.png' %}">
+            <h2>Payment Verified</h2>
+            <p>Your payment has been received! Thank you for using Appoint Master.</p>
+            <button type="button" class="btn"><a href="/" style="text-decoration: none; color:white;">OK</a></button>
+        </div>
+    </div>
+<script src="{% static 'appoint_app/js/popup.js' %}"></script>
+</body>
+</html>
+{% endif %}

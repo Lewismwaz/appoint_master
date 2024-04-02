@@ -1,0 +1,273 @@
+{% extends "appoint_app/index.html" %}
+{% load static %}
+{% block title %}Home{% endblock title %}
+
+{% block main-content %}
+  <h4 style="color: #0536CE; text-decoration: none; font-weight: bold;"><center><b><img src="{% static 'appoint_app/images/appoint-master-logo.png' %}" width="45" height="45" alt="Logo"><a href="{% url 'login' %}" style="color: #FE0177; text-decoration: none;"> Book</a> a Doctor Appointment Now!!! </b></center></h4>
+{% endblock main-content %}
+
+{% block banner-slider %}
+<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="{% static 'appoint_app/images/banner/banner.jpg' %}" alt="..." class="d-block w-100" style="width: 100%; height: 100%;">
+        <div class="carousel-caption d-none d-md-block">
+          <h5 style="color: #B2FE01; font-weight: bold; padding-bottom: -14px;">Appoint Master</h5>
+          <p style="color: #B2FE01; font-weight: bold; padding-bottom: -14px;">Your health companion © 2024</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'appoint_app/images/banner/banner2.jpg' %}" alt="..." class="d-block w-100" style="width: 100%; height: 100%;">
+        <div class="carousel-caption d-none d-md-block">
+          <h5 style="color: #3C01FE; font-weight: bold; padding-bottom: -14px;">Appoint Master</h5>
+          <p style="color: #3C01FE; font-weight: bold; padding-bottom: -14px;">Your secure health gateway © 2024</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'appoint_app/images/banner/banner3.jpg' %}"alt="..." class="d-block w-100" style="width: 100%; height: 100%;">
+        <div class="carousel-caption d-none d-md-block">
+          <h5 style="color: #87868C; font-weight: bold; padding-bottom: -14px;">Appoint Master</h5>
+          <p style="color: #87868C; font-weight: bold; padding-bottom: -14px;">Appointments made easier © 2024</p>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+</div>
+{% endblock banner-slider %}
+
+{% block services %}
+<div class="fullContainer banner4">
+  <div class="container">
+      <h1>KUHC health services are now closer to you <span> Book one today</span></h1>
+      <p>
+          "Through our multidisciplinary approach to healthcare, D.U.H.S provides 
+          access to a wide variety of medical needs for a full range of clinical 
+          services, as well as primary care. This unique team approach brings together 
+          the work of physicians, nurses and other care providers across multiple 
+          specialties to ensure that our patients receive comprehensive, personalized 
+          care at any of our service delivery point."
+          KUHC offers the following services: primary care, mental health, specialized
+          services, occupational services, laboratory services, allergy, immunization
+          and travel services, and physical therapy. For more information about KUHC
+          services, visit 
+          <a href="https://www.ku.ac.ke/healthunit/features/clinical-services"
+              class="text-warning">here
+          </a>.
+      </p>
+    <button>
+        <a href="{% url 'login' %}" style="color: inherit; text-decoration: none;">Get Started</a>
+    </button>
+  </div>
+</div>
+
+<section class="services" id="Services">
+  <div class="container">
+      <h2 class="sectionTitle">KUHC Services</h2>
+  </div>
+  <div class="boxContainer">
+      <div class="box">
+          <div class="cardImage"></div>
+          <div class="serviceTitle">Health to expectant mothers</div>
+          <div class="serviceCount">
+              Related Services offered: <span>+134</span>
+          </div>
+        <button>
+            <a href="{% url 'login' %}" style="color: inherit; text-decoration: none;">Book Now</a>
+        </button>
+      </div>
+
+      <div class="box">
+          <div class="cardImage"></div>
+          <div class="serviceTitle">Our committed Doctors</div>
+          <div class="serviceCount">
+              Positive service-oriented responses: <span>+606</span>
+          </div>
+        <button>
+            <a href="{% url 'login' %}" style="color: inherit; text-decoration: none;">Book Now</a>
+        </button>
+      </div>
+
+      <div class="box">
+          <div class="cardImage"></div>
+          <div class="serviceTitle">Don't suffer alone, reach out</div>
+          <div class="serviceCount">
+              Appointments made, 2024: <span>+401</span>
+          </div>
+        <button>
+            <a href="{% url 'login' %}" style="color: inherit; text-decoration: none;">Book Now</a>
+        </button>
+      </div>
+
+      <div class="box">
+          <div class="cardImage"></div>
+          <div class="serviceTitle">We care for you!</div>
+          <div class="serviceCount">
+              Patient turn-up - Feb 2024: <span>+476</span>
+          </div>
+        <button>
+            <a href="{% url 'login' %}" style="color: inherit; text-decoration: none;">Book Now</a>
+        </button>
+      </div>
+
+      <div class="box">
+          <div class="cardImage"></div>
+          <div class="serviceTitle">Health checkup</div>
+          <div class="serviceCount">
+              Health checkups 2023: <span>+988</span>
+          </div>
+        <button>
+            <a href="{% url 'login' %}" style="color: inherit; text-decoration: none;">Book Now</a>
+        </button>
+      </div>
+
+      <div class="box">
+          <div class="cardImage"></div>
+          <div class="serviceTitle">Our nursing department</div>
+          <div class="serviceCount">
+              Health related conditions 2024 stats: <span>-196</span>
+          </div>
+        <button>
+            <a href="{% url 'login' %}" style="color: inherit; text-decoration: none;">Book Now</a>
+        </button>
+      </div>
+
+      <div class="box">
+          <div class="cardImage"></div>
+          <div class="serviceTitle">Our experienced doctors</div>
+          <div class="serviceCount">
+              Verified and recommended: <span>2024</span>
+          </div>
+        <button>
+            <a href="{% url 'login' %}" style="color: inherit; text-decoration: none;">Book Now</a>
+        </button>
+      </div>
+
+      <div class="box">
+          <div class="cardImage"></div>
+          <div class="serviceTitle">Consult us today</div>
+          <div class="serviceCount">
+              Be the first among our patients: <span>+10393</span>
+          </div>
+        <button>
+            <a href="{% url 'login' %}" style="color: inherit; text-decoration: none;">Book Now</a>
+        </button>
+      </div>
+  </div>
+</section>
+{% endblock services %}
+
+{% block about-us %}
+<section class="fullContainer" id="About">
+  <div class="container">
+        <h2 class="sectionTitle">About KUHC</h2>
+        <p>
+            At KUHC, we understand the importance of convenient healthcare accessibility
+            for students and staff alike. That's why we've developed a cutting-edge
+                hospital appointment booking system specifically tailored for the unique
+                needs of Kenyatta University Health Center patients. Our team of dedicated designers
+                has meticulously crafted an intuitive platform that prioritizes simplicity,
+                efficiency, and reliability. Whether you're a busy student juggling classes
+                    and extracurricular activities or a dedicated staff member managing a
+                    hectic schedule, our system streamlines the process of scheduling
+                    appointments with healthcare professionals at KUHC. With user-friendly
+                    interfaces and seamless integration, we're committed to providing a
+                        hassle-free experience that empowers our university community to 
+                        prioritize their health and well-being. At KUHC, your health is our
+                        priority, and our appointment booking system reflects our unwavering
+                        dedication to delivering accessible and high-quality healthcare services to all.
+        </p>
+
+        <div class="cards">
+            <div class="bookBox">
+                <div class="title">See a doctor</div>
+                <p>Booking doctor appointments has never been easier. 
+                    Experience the convenience that comes with booking your doctor 
+                    appointments online.
+                </p>
+                <button>
+                    <a href="{% url 'login' %}" style="color: inherit; text-decoration: none;">Book Now</a>
+                </button>
+            </div>
+      
+            <div class="joinBox">
+                <div class="title">Become an Ambassador</div>
+                <p>Join us on this journey towards better health services, 
+                    one appointment at a time. Together, we can make a difference in the world of healthcare.
+                </p>
+                <button>
+                    <a href="{% url 'login' %}" style="color: inherit; text-decoration: none;">Join us</a>
+                </button>
+            </div>
+      
+            <div class="supportBox">
+                <div class="title">Rate Appoint-Master</div>
+                <p>We can't offer better services without your inputs. We value them, all.
+                </p>
+                <button>
+                    <a href="{% url 'login' %}" style="color: inherit; text-decoration: none;">Review</a>
+                </button>
+            </div> 
+      </div>
+  </div>
+</section>
+{% endblock about-us %}
+
+
+{% block help %}
+<section class="fullContainer" id="Help" style="margin-bottom: 5px; padding-bottom: 3px;">
+  <div class="container">
+        <h2 class="sectionTitle" style="color:#0536CE; font-weight:700; font-size: 30px;">Help and Support</h2>
+        <p>Need any help with accessing the services offered by KUHC via Appoint Master? For any enquiries and complaints reach us via <b>eappointmaster@gmail.com</b>.</p>
+            <p>For KUHC enquiries, see the details below:</p>
+            <p>Contact by Phone:</p>
+            <li>Main Campus  020-2503836</li>
+            <li>Main Campus Ambulance 020-2503838</li>
+            <li>Ruiru Campus Clinic  020-2503835</li>
+            <li>Ruiru Campus Ambulance   020-2503833</li>
+            <li>Parklands Campus Clinic  020-2503834</li>
+            <li>Parklands Campus Ambulance 020-2503837</li>
+          <p>Email KUHC: <a href="mailto:healthunit@ku.ac.ke">healthunit@ku.ac.ke</a></p>
+          <p>Working Hours:</p>  
+          <p><b>Monday - Friday (08.30 - 17.00) GMT+2</b></p>
+          <p>Reach on our social media platforms below:</p>
+
+  </div>
+</section>
+{% endblock help %}
+
+{% block datetime-script %}
+<script>
+  function updateTime() {
+      var now = new Date();
+      var hours = now.getHours();
+      var minutes = now.getMinutes();
+      var seconds = now.getSeconds();
+      var day = now.toLocaleDateString('en-US', { weekday: 'long' });
+      var month = now.toLocaleDateString('en-US', { month: 'long' });
+      var date = now.getDate();
+      var year = now.getFullYear();
+      var ampm = hours >= 12 ? 'PM' : 'AM'; // Check if it's AM or PM
+
+      // Convert hours to 12-hour format
+      hours = hours % 12;
+      hours = hours ? hours : 12; // If hours is 0, make it 12
+
+      // Add leading zeros to minutes and seconds if they are less than 10
+      minutes = minutes < 10 ? '0' + minutes : minutes;
+      seconds = seconds < 10 ? '0' + seconds : seconds;
+
+      var timeString = day + ', ' + month + ' ' + date + ', ' + year + ' ' + hours + ':' + minutes + ':' + seconds + ' ' + ampm;
+      document.getElementById('real-time-clock').textContent = timeString;
+  }
+
+  updateTime(); // Call initially
+  setInterval(updateTime, 1000); // Update every second
+</script>
+{% endblock datetime-script %}

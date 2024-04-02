@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cancel Confirmation@Admin</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .btn-delete {
+            background-color: #e53e3e;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            margin-right: 10px;
+            border-radius: 9px;
+            cursor: pointer;
+            margin-bottom: 5px;
+        }
+        .btn-delete:hover {
+            background-color: #c53030;
+        }
+        .btn-cancel {
+            background-color: #3182ce;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 9px;
+            cursor: pointer;
+            margin-bottom: 5px;
+        }
+        .btn-cancel:hover {
+            background-color: #2c5282;
+        }
+    </style>
+	<link rel="stylesheet" href="{% static 'appoint_app/css/messages.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="text-center pb-2">
+            <img src="{% static 'appoint_app/images/appoint-master-logo.png' %}" alt="Logo" style="width: 43px; height: 43px;">
+        </div>
+        <h2 style="font-size: 21px; font-family:'Times New Roman', Times, serif;">Confirm Appointment Cancel</h2>
+        <p>Are you sure you want to cancel the appointment?</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn-delete" style="text-decoration: none;">Yes</button>
+            <a href="/" class="btn-cancel" style="text-decoration: none;">No</a>
+        </form>
+    </div>
+</body>
+</html>

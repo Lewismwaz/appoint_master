@@ -1,0 +1,35 @@
+{% if user.is_authenticated %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Appoint Master</title>
+    <style>
+        @keyframes flash {
+            0%   {color: rgb(204, 0, 255); opacity: 1;}
+            50%  {color: rgb(208, 231, 0); opacity: 0;}
+            100% {color: rgb(255, 17, 17); opacity: 1;}
+        }
+        .flashing {
+            animation: flash 2s linear infinite;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2em;
+        }
+        body {
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="flashing" style="font-size: 60px;">Video call coming soon!!</h1>
+    <button onclick="goBack()" style="cursor: pointer; position: absolute; padding: 12px; margin: 12px; border-style: none; border-radius: 9px; top: 70%; left: 50%; transform: translate(-50%, -50%); background-color:blueviolet; color: white;">Go Back</button>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>
+{% endif %}

@@ -1,0 +1,126 @@
+button-container {
+    top:0;
+}
+
+table {
+    font-size: 13.9px;
+}
+
+.btn-link-cancel {
+    text-decoration: none; /* Remove underline */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    font-weight: 500;
+    color: rgb(112, 0, 62);
+}
+
+.btn-link-update {
+    text-decoration: none; /* Remove underline */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    font-weight: 500;
+    color: rgb(0, 0, 0);
+}
+
+.btn-link-delete {
+    text-decoration: none; /* Remove underline */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    font-weight: 500;
+    color: rgb(0, 0, 0);
+}
+
+.btn-delete {
+    text-align: center;
+    background-color: rgb(255, 127, 127);
+    color: rgb(0, 0, 0);
+    padding: .2rem 0.4rem;
+    border-radius: .4rem;
+    border: none;
+    margin-bottom: 4px;
+    margin-top: -4px;
+    align-self: center; ;
+}
+
+
+.btn-cancel {
+    text-align: center;
+    background-color: rgb(255, 88, 157);
+    color: rgb(37, 1, 21);
+    padding: .2rem 0.4rem;
+    border-radius: .4rem;
+    border: none;
+    margin-bottom: 4px;
+    margin-top: -4px;
+    align-self: center; ;
+}
+
+.btn-update {
+    text-align: center;
+    background-color: rgb(86, 111, 255);
+    color: rgb(37, 1, 21);
+    padding: .2rem 0.4rem;
+    border-radius: .4rem;
+    border: none;
+    margin-bottom: 4px;
+    margin-top: -4px;
+    align-self: center; ;
+}
+
+
+.status-pending {
+    text-align: center;
+    background-color: rgb(252, 249, 98);
+    color: rgb(129, 81, 17);
+    padding: .3rem 0.4rem;
+    border-radius: .4rem;
+    border: none;
+    margin-bottom: 4px;
+    margin-top: 12px;
+    align-self: center; 
+}
+
+.status-failed {
+    text-align: center;
+    background-color: rgb(255, 186, 106);
+    color: rgb(109, 17, 40);
+    padding: .3rem 0.4rem;
+    border-radius: .4rem;
+    border: none;
+    margin-bottom: 4px;
+    margin-top: 12px;
+    align-self: center; 
+}
+
+.status-scheduled {
+    text-align: center;
+    background-color: rgb(110, 255, 224);
+    color: rgb(0, 94, 55);
+    padding: .3rem 0.4rem;
+    border-radius: .4rem;
+    border: none;
+    margin-bottom: 4px;
+    margin-top: 12px;
+    align-self: center; 
+}
+
+.status-canceled {
+    text-align: center;
+    background-color: rgb(255, 88, 157);
+    color: rgb(112, 35, 22);
+    padding: .3rem 0.4rem;
+    border-radius: .4rem;
+    border: none;
+    margin-bottom: 4px;
+    margin-top: 12px;
+    align-self: center; 
+}
+
+.status-completed {
+    text-align: center;
+    background-color: rgb(50, 248, 60);
+    color: rgb(12, 77, 28);
+    padding: .3rem 0.4rem;
+    border-radius: .4rem;
+    border: none;
+    margin-bottom: 4px;
+    margin-top: 12px;
+    align-self: center; 
+}
