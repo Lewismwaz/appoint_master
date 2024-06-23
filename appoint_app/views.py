@@ -1,7 +1,21 @@
 from django.shortcuts import redirect, render
 from account.models import Appointment, User
 from payments.models import Payment 
+from django.contrib.auth import logout 
+from django.contrib import messages
 
+
+# Create a logout view
+def logout_view(request):
+    logout(request)
+    if request.user.is_authenticated:
+        request.user.set_last_logout()  # Update last logout time
+        messages.success(request, 'Logout Success!')
+    return redirect('login')
+
+
+
+# Create a dashboard view
 def dashboard(request):
     if request.user.is_authenticated:
         user = request.user
@@ -178,7 +192,6 @@ def dashboard(request):
                 'failed_percentage': failed_percentage,
                 'resolved_percentage': resolved_percentage
             })
-
         elif user.is_Doctor:
             appointments = Appointment.objects.filter(appointed_doctor=user)
             if appointments:
@@ -202,6 +215,7 @@ def dashboard(request):
                 closed_appointments = 0
                 appointment_percentage = 0
                 completed_percentage = 0
+                closed_percentage = 0
                 scheduled_percentage = 0
                 canceled_percentage = 0
                 failed_percentage = 0
@@ -229,16 +243,17 @@ def dashboard(request):
                 'failed_percentage': failed_percentage,
                 'resolved_percentage': resolved_percentage
             })
-
         else:
-            return redirect('login')
+            return redirect('home')
     else:
-        return render(request, "appoint_app/login.html")
+        return render(request, "appoint_app/home.html")
+    
 
+# Create a home view
 def home(request):
     return render(request, "appoint_app/home.html")
 
+
+# Create a terms & conditions view
 def terms(request):
     return render(request, "appoint_app/terms_and_conditions.html")
-
-

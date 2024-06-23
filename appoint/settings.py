@@ -9,29 +9,30 @@ from . info import *
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# SMTP Email Backend setup
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'youremail@gmail.com'
-EMAIL_HOST_PASSWORD = '**** **** **** ****'
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
+
 # Quick-start development settings - unsuitable for production
 
-
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-***********************************************'
+SECRET_KEY = 'django-insecure-l4c%xn+vgw5=yi!)j$1(x5*c6hf7@2z)8vaio9zu3gch0+lfsw'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# For testing site in different platforms/devices
 ALLOWED_HOSTS = []
 
 
 # Application definition
-
 INSTALLED_APPS = [
     'jazzmin',
     'appoint_app',
@@ -55,6 +56,7 @@ INSTALLED_APPS = [
 
 AUTH_USER_MODEL = 'account.User'
 
+# Tailwind CSS settings
 TAILWIND_APP_NAME = 'theme'
 
 MIDDLEWARE = [
@@ -68,6 +70,7 @@ MIDDLEWARE = [
     "django_browser_reload.middleware.BrowserReloadMiddleware",
 ]
 
+# Node.js and npm paths
 NPM_BIN_PATH = "C:/Program Files/nodejs/npm.cmd"
 ROOT_URLCONF = 'appoint.urls'
 
@@ -99,7 +102,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -138,6 +140,7 @@ INTERNAL_IPS = [
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
+# Static files (CSS, JavaScript, Images)
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR/'all_static'
@@ -147,15 +150,18 @@ MEDIA_ROOT = BASE_DIR/'media'
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
+# Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-PAYSTACK_SECRET_KEY = 'sk_live_****************************************'
-PAYSTACK_PUBLIC_KEY = 'pk_live_****************************************'
 
+# Paystack API keys
+PAYSTACK_SECRET_KEY = ''
+PAYSTACK_PUBLIC_KEY = ''
 
+# Crispy forms settings
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-
+# Jazzmin settings
 JAZZMIN_UI_TWEAKS = {
     "theme": "simplex",
 }
@@ -174,5 +180,6 @@ JAZZMIN_SETTINGS = {
     'site_header':"Appoint Master",
     'site_brand':"Appoint Master",
     'copyright':"Appoint Master",
-    "show_sidebar": False,
+    "show_sidebar": True,
     }
+ 

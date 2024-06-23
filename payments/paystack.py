@@ -1,6 +1,8 @@
 from django.conf import settings
 import requests
 
+
+# Create a class to handle PayStack transactions
 class PayStack:
     PAYSTACK_PUBLIC_KEY = settings.PAYSTACK_SECRET_KEY
     base_url = 'https://api.paystack.co'

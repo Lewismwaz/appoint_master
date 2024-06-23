@@ -72,9 +72,9 @@
                                 <td>{{ appointment.book_time }}</td>
                                 <td>
                                     {% if appointment.is_resolved %}
-                                        <strong style="color:rgb(12, 189, 26);">{{ appointment.get_is_resolved_display }}</strong>
+                                        {{ appointment.is_resolved_display }}
                                     {% else %}
-                                        <strong style="font-weight: 700; color:rgb(230, 38, 54);">{{ appointment.get_is_resolved_display }}</strong>
+                                        {{ appointment.is_resolved_display }}
                                     {% endif %}
                                 </td>
                                 <td>
@@ -128,6 +128,7 @@
         <a href="/" style="text-decoration: none; color: rgb(74, 17, 206); font-weight: 600;">Dashboard</a>
     </p>
 </div>
+
 <style>
     footer {
         font-size: 13px;
@@ -137,6 +138,7 @@
     <img src="{% static 'appoint_app/images/appoint-master-logo.png' %}" width="30" height="30" alt="Logo"> ©
   2024 Appoint Master, KUHC
 </footer>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script src="{% static 'appoint_app/js/date_time.js' %}"></script>
 </body>

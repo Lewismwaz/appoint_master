@@ -4,11 +4,15 @@ from appoint_app.views import dashboard, home, terms
 from django.views.generic import TemplateView
 from django.contrib.auth import views as auth_views
 
+
 urlpatterns = [
+    path('export_user_payments_pdf/', views.export_user_payments_pdf, name='export_user_payments_pdf'),
+    path('export_admin_all_payments_pdf/', views.export_admin_all_payments_pdf, name='export_admin_all_payments_pdf'),
+    path('account/export_appointment_pdf/<str:appointment_id>/', views.export_appointment_pdf, name='export_appointment_pdf'),
+    
     path('toggle-dark-mode/', views.toggle_dark_mode, name='toggle_dark_mode'),
     path('delete_account_confirmation/', views.delete_account_confirmation, name='delete_account_confirmation'),
     
-    path("appointment_pdf/", views.appointment_pdf, name='appointment_pdf'),
     path('export/appointments_payments/pdf/', views.export_appointments_payments_pdf, name='export_appointments_payments_pdf'),
     
     path('doctor-otp-verification/', views.doctor_otp_verification, name='doctor_otp_verification'),
@@ -39,7 +43,6 @@ urlpatterns = [
     path("closed-appointments/", views.closed_appointments, name='closed-appointments'),
     path("cancel-appointment/<str:appointment_id>/", views.cancel_appointment, name='cancel-appointment'),
     path("cancel-patient-appointment/<str:appointment_id>/", views.cancel_patient_appointment, name='cancel-patient-appointment'),
-    path("cancel-doctor-appointment/<str:appointment_id>/", views.cancel_doctor_appointment, name='cancel-doctor-appointment'),
     path("delete-appointment/<str:appointment_id>/", views.delete_appointment, name='delete-appointment'),
     path("delete-patient-appointment/<str:appointment_id>/", views.delete_patient_appointment, name='delete-patient-appointment'),
     path("video-call-patient/", views.video_call_patient, name='video-call-patient'),
@@ -64,6 +67,7 @@ urlpatterns = [
     path('register-admin/', views.register_admin, name='register-admin'),
     path("login/", views.login_user, name='login'),
     path("logout/", views.logout_user, name='logout'),
+    path('login/', auth_views.LoginView.as_view(), name='login'),
     
     path('password-change/', auth_views.PasswordChangeView.as_view(), name='password_change'),
     path('password-change/done/', auth_views.PasswordChangeDoneView.as_view(), name='password_change_done'),

@@ -88,16 +88,16 @@
                         <td>{{ appointment.book_time }}</td>
                         <td>
                             {% if appointment.is_resolved %}
-                                <strong style="color:rgb(12, 189, 26);">{{ appointment.get_is_resolved_display }}</strong>
+                            ☑️
                             {% else %}
-                                <strong style="font-weight: 700; color:rgb(230, 38, 54);">{{ appointment.get_is_resolved_display }}</strong>
+                            ❎
                             {% endif %}
                         </td>
                         <td>
                             {% if appointment.payment %}
-                                <strong style="color:rgb(12, 189, 26);">{{ appointment.payment_display }}</strong>
+                            ✅
                             {% else %}
-                                <strong style="font-weight: 700; color:rgb(230, 38, 54);">{{ appointment.payment_display }}</strong>
+                            ⚠️
                             {% endif %}
                         </td>
                         <td>
@@ -158,6 +158,7 @@
             <a href="/" style="text-decoration: none; color: rgb(74, 17, 206); font-weight: 600;">Dashboard</a>
         </p> 
     </div>
+    
     <script src="{% static 'appoint_app/js/login_patient.js' %}"></script>
 </body>
 </html> 

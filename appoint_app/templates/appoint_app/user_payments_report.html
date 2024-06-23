@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+{% load static %}
+{% load tz %}
+<html>
+<head>
+    <style>
+        body{
+            margin: 2px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 3px;
+            align-items: center;
+            word-wrap: break-word; 
+            overflow-wrap: break-word; 
+        }
+        td{
+            font-size: 10px;
+        }
+        .center-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+    <script defer src="{% static 'appoint_app/js/date_time.js' %}"></script>
+</head>
+<body>
+    <section class="center-content bg-primary p-1 mb-2 text-white rounded">
+        <div class="logo">
+            <img src="static/appoint_app/images/appoint-master-logo.png" width="37" height="37" alt="Logo">
+        </div>
+        <div>
+            <h6 style="font-size: 14.6px">YOUR PAYMENTS</h6>           
+        </div>
+        <div class="mb-2">
+            <span id="real-time-clock" style="font-weight: 700; font-size: 14.5px;">
+                {% localtime on %}
+                    {% now "l, F j, Y H:i:s" %}
+                {% endlocaltime %}
+            </span>
+        </div>
+
+        <div>
+            <h6 style="font-size: 14.6px">Patient: {{user.first_name}} {{user.last_name}}</h6>
+        </div>
+        <div>
+            <h6 style="font-size: 14.6px">Type: {{user.patient_type}}</h6>
+        </div>
+        <div>
+            <h6 style="font-size: 14.6px">ID: {{user.patient_id}}</h6>
+        </div>
+    </section>
+    <table>
+            <tr style="width: 100%;">
+                <th>Receipt Number</th>
+                <th>Amount</th>
+                <th>Phone Number</th>
+                <th>Date</th>               
+                <th>Appoint.ID</th>
+                <th>Reference ID</th>
+                <th>Verified</th>
+                <th>Reference Email (@gmail.com)</th>
+            </tr>
+        <tbody>
+            {% for row in data %}
+                <tr>
+                    {% for cell in row %}
+                        <td>{{ cell }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+    </table>        
+    <style>
+        footer {
+            font-size: 13px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+    <footer class="container-fluid bg-primary fixed-bottom text-white text-bold">
+        <img src="static/appoint_app/images/appoint-master-logo.png" width="20" height="20" alt="Logo"> ©
+      2024 Appoint Master, KUHC
+    </footer>
+</body>
+</html>

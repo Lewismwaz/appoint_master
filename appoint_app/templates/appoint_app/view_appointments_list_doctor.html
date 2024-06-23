@@ -85,9 +85,9 @@
                         <td>{{ appointment.book_time }}</td>
                         <td class="status-container">
                             {% if appointment.is_resolved %}
-                                <strong class="status-completed">{{ appointment.get_is_resolved_display }}</strong>
+                            ☑️
                             {% else %}
-                                <strong class="status-failed">{{ appointment.get_is_resolved_display }}</strong>
+                            ❎
                             {% endif %}
                         </td>
                         <td>

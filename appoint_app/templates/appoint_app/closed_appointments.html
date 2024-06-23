@@ -55,7 +55,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for appointment in appointments %}
+                        {% for appointment in closed_appointments %}
                             <tr>
                                 <td>{{ appointment.appoint_id }}</td>                           
                                 <td>
@@ -82,11 +82,11 @@
                                     <td>--</td>
                                 {% endif %}
                                 <td>
-                                {% if appointment.is_resolved %}
-                                    <strong style="color:rgb(12, 189, 26);">{{ appointment.get_is_resolved_display }}</strong>
-                                {% else %}
-                                    <strong style="font-weight: 700; color:rgb(230, 38, 54);">{{ appointment.get_is_resolved_display }}</strong>
-                                {% endif %}
+                                    {% if appointment.is_resolved %}
+                                    ☑️
+                                    {% else %}
+                                    ❎
+                                    {% endif %}
                                 </td>
                                 <td>
                                     {% if appointment.appoint_status == 'Pending' %}

@@ -20,9 +20,11 @@
         <div>
             <h6 style="font-size: 14.6px">Appointment ID: {{ appointment.appoint_id }}</h6>
         </div>
-        <div>
-            <a href="{% url 'appointment_pdf' %}" class="btn btn-warning" style="padding: 2px; margin: 1px">Generate Report</a>
-        </div>
+        {% if user.is_authenticated and user.is_Staff_Patient or user.is_authenticated and user.is_Student_Patient %}
+            <div>
+                <a href="{% url 'export_appointment_pdf' appointment_id=appointment.appoint_id %}" class="btn btn-warning" style="padding: 2px; margin: 1px">Generate Report</a>
+            </div>
+        {% endif %}
         <div class="mb-2">
             <span id="real-time-clock" style="font-weight: 700; font-size: 14.5px;">
                 {% localtime on %}
@@ -42,6 +44,7 @@
                         </tr>
                     </thead>
                     <tbody>
+                        
                         <tr>
                             <td><b>Booked:</b></td>
                             <td>{{ appointment.book_time }}</td>
@@ -50,9 +53,9 @@
                             <td><b>Resolved:</b></td>
                             <td>
                                 {% if appointment.is_resolved %}
-                                        <strong style="color:rgb(12, 189, 26);">{{ appointment.get_is_resolved_display }}</strong>
+                                ☑️
                                 {% else %}
-                                        <strong style="font-weight: 700; color:rgb(230, 38, 54);">{{ appointment.get_is_resolved_display }}</strong>
+                                ❎
                                 {% endif %}
                             </td>
                         </tr>
@@ -72,14 +75,19 @@
                             <td><b>Patient Gender:</b></td>
                             <td>{{ appointment.appointee.gender }}</td>
                         </tr>
+                        <!--Patient phone number & email can't be viewed by doctor; only patient and admin.-->
+                        {% if user.is_authenticated and  not user.is_Doctor %}
                         <tr>
                             <td><b>Patient Phone:</b></td>
                             <td>{{ phone_number }}</td>
                         </tr>
+                        
                         <tr>
                             <td><b>Patient Email:</b></td>
                             <td>{{ appointment.appointee.email }}</td>
                         </tr>
+                        {% endif %}
+
                         <tr>
                             <td><b>Appointed Doctor:</b></td>
                             <td>{{ appointment.appointed_doctor }}</td>
@@ -88,9 +96,9 @@
                             <td><b>Payment:</b></td>
                             <td>
                                 {% if appointment.payment %}
-                                    <strong style="color:rgb(12, 189, 26);">{{ appointment.payment_display }}</strong>
+                                ✅️
                                 {% else %}
-                                    <strong style="font-weight: 700; color:rgb(230, 38, 54);">{{ appointment.payment_display }}</strong>
+                                ⚠️
                                 {% endif %}
                             </td>
                         </tr>
@@ -141,8 +149,7 @@
                         <tr>
                             <td><b>Remarks:</b></td>
                             <td>{{ appointment.doctor_remarks }}</td>
-                        </tr>
-                                
+                        </tr>             
                 </tbody>
                 </table>
             </div>

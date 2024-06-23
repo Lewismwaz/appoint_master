@@ -1,4 +1,4 @@
-from datetime import datetime, time
+from datetime import time
 from django import forms
 from .models import ID, NextOfKin, User, generate_appointment_id
 from django.utils import timezone
@@ -11,6 +11,7 @@ from phonenumber_field.widgets import PhoneNumberPrefixWidget
 from .models import Appointment, User, NextOfKin
 from django.core.exceptions import ValidationError
 
+# Create form choices
 SPECIALIZATION_CHOICES = [
         ('', '----------'),
         ('Dentistry', 'Dentistry'),
@@ -62,6 +63,7 @@ PATIENT_TYPE_CHOICES = [
 ]
 
 
+# Create a custom password input widget with an eye icon to toggle password visibility
 class PasswordInputWithToggle(PasswordInput):
     def render(self, name, value, attrs=None, renderer=None):
         rendered = super().render(name, value, attrs, renderer)
@@ -80,6 +82,7 @@ class PasswordInputWithToggle(PasswordInput):
         return mark_safe(eye_toggle)
 
 
+# Create a custom Admin user registration form
 class AdminRegistrationForm(UserCreationForm):
     email = forms.EmailField(required=True, widget=forms.EmailInput(attrs={'class': 'block w-full rounded-full border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6', 'id': 'email', 'autocomplete': 'email', 'placeholder': 'Email'}))
     username = forms.CharField(label='Username', widget=forms.TextInput(attrs={'id': 'username', 'placeholder': 'Unique username', 'required': True, 'class': 'block w-full rounded-full border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'}), required=True)
@@ -88,7 +91,6 @@ class AdminRegistrationForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['username', 'email', 'password1', 'password2']
-    
     
     def save(self, commit=True):
         user = super().save(commit=False)
@@ -100,6 +102,7 @@ class AdminRegistrationForm(UserCreationForm):
         return user
 
 
+# Create a custom Doctor registration form
 class DoctorRegistrationForm(UserCreationForm):
     specialization = forms.ChoiceField(required=True, label='Specialization', choices=SPECIALIZATION_CHOICES, widget=forms.Select(attrs={'id': 'specialization', 'required': True, 'class': 'block w-full rounded-full border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'}))
     email = forms.EmailField(required=True, widget=forms.EmailInput(attrs={'class': 'block w-full rounded-full border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6', 'id': 'email', 'autocomplete': 'email', 'placeholder': 'Email'}))
@@ -113,7 +116,6 @@ class DoctorRegistrationForm(UserCreationForm):
         model = User
         fields = ['username', 'specialization', 'first_name', 'last_name',  'email', 'password1', 'password2']
     
-    
     def save(self, commit=True):
         user = super().save(commit=False)
         user.is_Doctor = True
@@ -121,6 +123,8 @@ class DoctorRegistrationForm(UserCreationForm):
             user.save()
         return user
 
+
+# Create a custom Patient(next-of-kin) registration form
 class NextOfKinForm(forms.ModelForm):
     relationship = forms.ChoiceField(label='Relationship*', choices=NextOfKin.RELATIONSHIP_CHOICES, widget=forms.Select(attrs={'id': 'relationship', 'required': True, 'class': 'block w-full rounded-full border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'}))
     kin_fname = forms.CharField(label='First Name*', required=True, widget=forms.TextInput(attrs={'id': 'kin_fname', 'autocomplete': '', 'placeholder': 'First name...', 'required': True, 'class': 'block w-full rounded-full border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'}), max_length=50)
@@ -145,10 +149,10 @@ class NextOfKinForm(forms.ModelForm):
         fields = ['kin_fname', 'kin_lname', 'relationship', 'kin_phone']    
 
 
-
+# Create a custom Patient registration form
 class PatientRegistrationForm(UserCreationForm):
     patient_type = forms.ChoiceField(required=True, label='Patient Type', choices=PATIENT_TYPE_CHOICES, widget=forms.Select(attrs={'id': 'patient_type', 'required': True, 'class': 'block w-full rounded-full border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'}),)
-    patient_id = forms.CharField(label='Patient ID', required=True, widget=forms.TextInput(attrs={'id': 'patient_id', 'autocomplete': '', 'placeholder': 'Enter your Student/Staff ID', 'required': True, 'class': 'block w-full rounded-full border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'}), max_length=15)
+    patient_id = forms.CharField(label='Patient ID', required=True, widget=forms.TextInput(attrs={'id': 'patient_id', 'autocomplete': '', 'placeholder': 'Enter your ID', 'required': True, 'class': 'block w-full rounded-full border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'}), max_length=15)
     phone_number = PhoneNumberField(
         label='Phone Number',
         max_length=13,
@@ -178,11 +182,12 @@ class PatientRegistrationForm(UserCreationForm):
         }),
     )
     
+    # Meta class to define the model and fields to be used in the form
     class Meta:
         model = User
         fields = ['username', 'patient_type',  'patient_id', 'first_name', 'last_name', 'email', 'phone_number',  'password1', 'password2', 'agree_to_terms']
     
-    
+    # Custom clean method to validate the patient ID
     def clean_patient_id(self):
         patient_id = self.cleaned_data.get('patient_id')
         patient_type = self.cleaned_data.get('patient_type')
@@ -196,6 +201,7 @@ class PatientRegistrationForm(UserCreationForm):
 
         return patient_id
 
+    # Custom save method to save the user and update the patient ID record
     def save(self, commit=True):
         user = super().save(commit=False)
         patient_type = self.cleaned_data.get('patient_type')
@@ -219,10 +225,10 @@ class PatientRegistrationForm(UserCreationForm):
         return user
     
 
-
+# Create a custom Patient registration form for the Admin
 class PatientRegistrationForm_Admin(UserCreationForm):
     patient_type = forms.ChoiceField(required=True, label='Patient Type', choices=PATIENT_TYPE_CHOICES, widget=forms.Select(attrs={'id': 'patient_type', 'required': True, 'class': 'block w-full rounded-full border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'}),)
-    patient_id = forms.CharField(label='Patient ID', required=True, widget=forms.TextInput(attrs={'id': 'patient_id', 'autocomplete': '', 'placeholder': 'Student/Staff ID', 'required': True, 'class': 'block w-full rounded-full border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'}), max_length=15)
+    patient_id = forms.CharField(label='Patient ID', required=True, widget=forms.TextInput(attrs={'id': 'patient_id', 'autocomplete': '', 'placeholder': 'ID', 'required': True, 'class': 'block w-full rounded-full border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'}), max_length=15)
     first_name = forms.CharField(label='First Name:', required=True, widget=forms.TextInput(attrs={'id': 'first_name', 'autocomplete': '', 'placeholder': 'First name', 'required': True, 'class': 'block w-full rounded-full border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'}), max_length=50)
     last_name = forms.CharField(label='Last Name:', required=True, widget=forms.TextInput(attrs={'id': 'last_name', 'autocomplete': '', 'placeholder': 'Last name', 'required': True, 'class': 'block w-full rounded-full border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'}), max_length=50)
     email = forms.EmailField(required=True, widget=forms.EmailInput(attrs={'class': 'block w-full rounded-full border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6', 'id': 'email', 'autocomplete': 'email', 'placeholder': 'Email'}))
@@ -234,7 +240,6 @@ class PatientRegistrationForm_Admin(UserCreationForm):
         model = User
         fields = ['username', 'patient_type',  'patient_id', 'first_name', 'last_name', 'email',  'password1', 'password2']
     
-    
     def clean_patient_id(self):
         patient_id = self.cleaned_data.get('patient_id')
         patient_type = self.cleaned_data.get('patient_type')
@@ -271,6 +276,7 @@ class PatientRegistrationForm_Admin(UserCreationForm):
         return user
 
     
+# Create custom validation for the Datetime field for an appointment
 class RestrictedDateTimeField(forms.DateTimeField):
     def validate(self, value):
         super().validate(value)
@@ -287,6 +293,7 @@ class RestrictedDateTimeField(forms.DateTimeField):
                 raise ValidationError("Appointment time should be on the hour or half past the hour.")
 
     
+# Create a custom form for creating an appointment (by Patients)
 class CreateAppointmentForm_patient(forms.ModelForm):           
     FOR_CHOICES = [
         ('', '-----'),
@@ -305,6 +312,7 @@ class CreateAppointmentForm_patient(forms.ModelForm):
     })
     )
 
+    # Assign the RestrictedDateTimeField (with validation) to the appoint_time field
     appoint_time = RestrictedDateTimeField()
     
     class Meta:
@@ -326,33 +334,8 @@ class CreateAppointmentForm_patient(forms.ModelForm):
             instance.save()
         return instance  
 
-    
 
-
- 
-
-class CreateAppointmentForm(forms.ModelForm):
-    appoint_area = forms.ChoiceField(label='Appointment Area:', required=True, choices=Appointment.APPOINTMENT_AREA_CHOICES, widget=forms.Select(attrs={'id': 'appoint_area', 'required': True,'class': 'block w-full mb-2 mt-2 rounded-full border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'}))
-    appoint_time = forms.DateTimeField()  
-    class Meta:
-        model = Appointment
-        fields = ['appoint_area', 'appointee']
-        
-    def __init__(self, *args, **kwargs):
-        self.request = kwargs.pop('request', None)  # Retrieve and store the request object
-        super().__init__(*args, **kwargs)
-
-    def save(self, commit=True):
-        instance = super().save(commit=False)
-        instance.appoint_id = generate_appointment_id()
-        if self.request:
-            instance.appointee = self.request.user
-        instance.book_time = timezone.now()
-        instance.appoint_status = 'Pending'
-        if commit:
-            instance.save()
-        return instance   
-
+# Create a custom form to update Profile (by Patients)
 class UpdateProfileForm_patient(forms.ModelForm):   
     profile_photo = forms.ImageField(label='', required=False, widget=forms.ClearableFileInput(attrs={
         'class': 'hidden', 'accept': 'image/*',
@@ -383,7 +366,7 @@ class UpdateProfileForm_patient(forms.ModelForm):
         fields = ['profile_photo','username', 'first_name', 'last_name', 'gender', 'email', 'phone_number']
 
 
-
+# Create a custom form to update Profile (by Doctors)
 class UpdateProfileForm_doctor(forms.ModelForm):  
     profile_photo = forms.ImageField(label='', required=False, widget=forms.ClearableFileInput(attrs={
         'class': 'hidden', 'accept': 'image/*',
@@ -414,6 +397,8 @@ class UpdateProfileForm_doctor(forms.ModelForm):
         model = User
         fields = ['profile_photo', 'username', 'first_name', 'last_name', 'gender', 'email', 'phone_number']
 
+
+# Create a custom form to update Profile (by Admin)
 class UpdateProfileForm_admin(forms.ModelForm):  
     profile_photo = forms.ImageField(label='', required=False, widget=forms.ClearableFileInput(attrs={
         'class': 'hidden', 'accept': 'image/*',
@@ -428,4 +413,3 @@ class UpdateProfileForm_admin(forms.ModelForm):
     class Meta:
         model = User
         fields = ['profile_photo', 'username', 'first_name', 'last_name', 'email']
-

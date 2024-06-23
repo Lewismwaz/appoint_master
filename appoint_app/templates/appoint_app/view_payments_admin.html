@@ -18,7 +18,7 @@
             <h6 style="font-size: 14.6px">ALL PAYMENTS</h6>           
         </div>
         <div>
-            <h6 style="font-size: 14.6px">REPORT</h6>
+            <a href="{% url 'export_admin_all_payments_pdf' %}" class="btn btn-warning" style="padding: 2px; margin: 1px">Generate Report</a>
         </div>
         <div class="mb-2">
             <span id="real-time-clock" style="font-weight: 700; font-size: 14.5px;">
@@ -71,9 +71,9 @@
                                 </td>
                                 <td>
                                     {% if payment.verified %}
-                                        <strong style="color:rgb(12, 189, 26);">{{ payment.verified_display }}</strong>
+                                        {{ payment.verified_display }}
                                     {% else %}
-                                        <strong style="font-weight: 700; color:rgb(230, 38, 54);">{{ payment.verified_display }}</strong>
+                                        {{ payment.verified_display }}
                                     {% endif %}
                                 </td>
                                 <td>
@@ -89,8 +89,12 @@
                 </tbody>
                 </table>
             </div>
-        </div>
+        </div>   
 </div>
+<p class="mt-4 text-center text-sm text-gray-500">
+    <a href="/" style="text-decoration: none; color: rgb(74, 17, 206); font-weight: 600;">Back</a>
+</p>
+
 <style>
     footer {
         font-size: 13px;

@@ -1,6 +1,4 @@
-from datetime import datetime, timedelta
 from django.db import models
-from django.forms import ValidationError
 from django.utils.translation import gettext_lazy as _
 from django.utils import timezone
 import random
@@ -9,7 +7,8 @@ from phonenumber_field.modelfields import PhoneNumberField
 from django.contrib.auth.models import AbstractUser
 from django.db.models import Q
 
-    
+
+# Create a Custom User Model   
 class User(AbstractUser):
     GENDER_CHOICES = [
         ('Male', 'Male'),
@@ -67,7 +66,6 @@ class User(AbstractUser):
         self.last_logout = timezone.now()
         self.save(update_fields=['last_logout'])
     
-    
     def populate_username(self):
         if self.patient_id:
             self.username = self.patient_id.username
@@ -82,8 +80,8 @@ class User(AbstractUser):
                 return "None"
         else:
             return "None"
-
-
+        
+    # Meta class to set metadata options
     class Meta:
         verbose_name = 'User'
         verbose_name_plural = 'Users'
@@ -91,6 +89,8 @@ class User(AbstractUser):
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
 
+
+# Create a model for Next of Kin(for a Patient)
 class NextOfKin(models.Model):
     RELATIONSHIP_CHOICES = [
         ('', '----------'),
@@ -130,6 +130,7 @@ class NextOfKin(models.Model):
         verbose_name_plural = "Next of Kins"
 
 
+# Create a model for Patient ID(Student & Staff)
 class ID(models.Model):
     PATIENT_TYPE_CHOICES = [
         ('Student', 'Student'),
@@ -146,11 +147,14 @@ class ID(models.Model):
         verbose_name = "Patient ID"
         verbose_name_plural = "Patient IDs"
 
+
+# Create a method to generate a random appointment ID
 def generate_appointment_id():
     alphanumeric = string.ascii_letters + string.digits
     return ''.join(random.choices(alphanumeric, k=6))
 
 
+# Create a model for Appointment
 class Appointment(models.Model):
     APPOINTMENT_AREA_CHOICES = (
         ('', '----------'),
@@ -204,8 +208,7 @@ class Appointment(models.Model):
     close_date = models.DateTimeField('Closed on', blank=True, null=True)
     appoint_status = models.CharField('Status', max_length=10, choices=APPOINTMENT_STATUS_CHOICES, blank=False)
 
-    
-    
+    # Save method to set the book time & appoint ID
     def save(self, *args, **kwargs):
         if not self.pk:  # Only set the book time if it's a new appointment
             self.book_time = timezone.now()
@@ -216,7 +219,7 @@ class Appointment(models.Model):
         return self.appoint_id
 
 
-    
+# Create a model for OTP(One Time Password)    
 class OTP(models.Model):
     otp_code = models.CharField(max_length=6)
     otp_created = models.DateTimeField(default=timezone.now)

@@ -44,7 +44,7 @@
         <form id="otpForm" action="." method="POST" class="mx-auto" style="max-width: 400px;">
             {% csrf_token %}
             <div class="form-row justify-content-center">
-                <label for="otp">Enter the OTP sent to <b>{{user.email}}</b>:</label>
+                <label for="otp">Enter the OTP sent to <b>{{user.email}}☑️</b>:</label>
             </div>
             
             <div class="form-row justify-content-center mb-3 mt-3">
@@ -57,7 +57,6 @@
                 <input type="text" class="otp-input" maxlength="1" name="digit6" required>
             </div>
         </form>
-        
         
         <p class="mt-4 text-center text-sm text-gray-500">
             Back to
@@ -95,7 +94,7 @@
                 });
             }
     
-            // Allow using < and > keys to move left and right between input fields
+            // Allow using < and > keys to move left and right between input fields (Does not work!)
             document.addEventListener('keydown', function(e) {
                 if (e.key === '<' || e.key === ',') {
                     e.preventDefault();
@@ -108,7 +107,7 @@
                 }
             });
     
-            // Prevent form submission when pressing Enter key
+            // Prevent form submission when pressing Enter key (Automatic otp submission)
             document.getElementById('otpForm').addEventListener('keypress', function(e) {
                 if (e.key === 'Enter') {
                     e.preventDefault();
@@ -116,9 +115,7 @@
             });
         });
     </script>
-    
-    
-    
+     
     <script src="{% static 'appoint_app/js/login_patient.js' %}"></script>
 </body>
 </html>

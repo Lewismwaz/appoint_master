@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+{% load static %}
+{% load tz %}
+<html>
+<head>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 5px;
+        }
+        .center-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+    <script defer src="{% static 'appoint_app/js/date_time.js' %}"></script>
+</head>
+<body>
+    <section class="center-content bg-primary p-1 mb-2 text-white rounded">
+        <div class="logo">
+            <img src="static/appoint_app/images/appoint-master-logo.png" width="37" height="37" alt="Logo">
+        </div>
+        <div>
+            <h6 style="font-size: 14.6px">ALL PAYMENTS</h6>           
+        </div>
+        <div style="margin-bottom: 4px;">
+            <span id="real-time-clock" style="font-weight: 700; font-size: 14.4px;">
+                {% localtime on %}
+                    {% now "l, F j, Y H:i:s" %}
+                {% endlocaltime %}
+            </span>
+        </div>
+    </section>
+    <table>
+            <tr style="width: 100%;">
+                <th>Receipt Number</th>
+                <th>Amount</th>
+                <th>Phone Number</th>
+                <th>Date</th>               
+                <th>Patient</th>
+                <th>Appoint.ID</th>
+                <th>Reference ID</th>
+                <th>Reference Email (@gmail.com)</th>
+            </tr>
+            {% for row in data %}
+            <tr>
+                {% for cell in row %}
+                <td>{{ cell }}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+    </table>
+    <style>
+        footer {
+            font-size: 13px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+    <footer class="container-fluid bg-primary fixed-bottom text-white text-bold">
+        <img src="static/appoint_app/images/appoint-master-logo.png" width="20" height="20" alt="Logo"> ©
+      2024 Appoint Master, KUHC
+    </footer>
+</body>
+</html>

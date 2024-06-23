@@ -53,7 +53,7 @@
             <a href="{% url 'video-call-patient' %}">
                <span class="material-symbols-sharp">videocam</span>
                <h3>Video call Appointment</h3>
-               <span class="message-count1">soon</span>
+               <span class="message-count1">Soon</span>
             </a> 
             <a href="{% url 'delete_account_confirmation' %}">
                <span class="material-symbols-sharp">warning</span>
@@ -217,7 +217,7 @@
             <div class="profile">
                <div class="info">
                   <p>Hey, <b>{{request.user.username}}</b></p>
-                  <small class="text-muted">Student patient</small>
+                  <small class="text-muted">Student patient<sup>💥</sup></small>
                </div>
                <div class="profile-photo">
                   <a href="{% url 'update-patient-profile' request.user.username %}">
@@ -248,9 +248,9 @@
                      {% endif %}
                   </div>
                   <div class="message">
-                     <span style="color: rgb(255, 0, 55); font-weight: 650;">STUDENT COVER</span>
+                     <span style="color: rgb(255, 0, 55); font-weight: 650;">STUDENT PATIENT<sup>💎</sup></span>
                      <p><b>{{request.user.patient_id}}</b></p>
-                     <small style="color: rgb(3, 189, 12); font-weight: 650;">Active</small>
+                     <small style="color: rgb(3, 189, 12); font-weight: 650;">Online</small>
                   </div>
                </div>
             </div>
@@ -279,7 +279,7 @@
                </div>
                <div class="right">
                   <div class="info">
-                     <h3>STUDENT COVER</h3>
+                     <h3>STUDENT COVER<sup>💎</sup></h3>
                      <small class="text-muted">Active</small>
                   </div>
                </div>
@@ -296,7 +296,6 @@
          </div>
       </div>
    </div>
-
    <script src="{% static 'appoint_app/js/master_scripts.js' %}"></script>
    <script src="{% static 'appoint_app/js/my_theme.js' %}"></script>
    <script src="{% static 'appoint_app/js/progress_bar.js' %}"></script>

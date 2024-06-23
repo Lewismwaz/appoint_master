@@ -2,6 +2,7 @@ from django.contrib import admin
 from .models import Payment
 from django.utils import timezone
 
+# Create a class to display the Payment model in the Admin interface
 class PaymentAdmin(admin.ModelAdmin):
     def date(self, obj):
         if obj.date_created:

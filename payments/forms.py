@@ -4,6 +4,7 @@ from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
+# Create a form for the Payment model
 class PaymentForm(forms.ModelForm):
     patient = forms.CharField(
         label='Patient',
@@ -23,5 +24,7 @@ class PaymentForm(forms.ModelForm):
             patient = f"{user.first_name} {user.last_name}"
             self.initial['patient'] = patient
             self.initial['email'] = user.email  # Autofill email with user's email
-            self.initial['amount'] = 2  # Autofill amount with 2
+            self.initial['amount'] = 2  # Autofill amount with ksh.2
             self.fields['patient'].widget.attrs['readonly'] = True
+            self.fields['amount'].widget.attrs['readonly'] = True
+            self.fields['email'].widget.attrs['readonly'] = True  

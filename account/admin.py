@@ -3,6 +3,7 @@ from .models import ID, OTP, Appointment, User, NextOfKin
 from django.contrib.auth.admin import UserAdmin
 
 
+# Create a custom user admin class
 class CustomUserAdmin(UserAdmin):
     list_display = ('username', 'first_name', 'last_name', 'email', 'phone_number','is_staff', 'date_joined','last_login', 'last_logout', 'active',)
     list_filter = ('is_Student_Patient', 'is_Staff_Patient', 'is_Doctor', 'is_staff', 'next_of_kin', 'username', 'last_login', 'last_logout','has_next_of_kin', 'first_name', 'last_name', 'email', 'patient_id', 'gender', 'phone_number', 'specialization','date_joined', 'active',)
@@ -11,6 +12,7 @@ class CustomUserAdmin(UserAdmin):
     
     actions = ['deactivate_users', 'activate_users']
     
+    # Custom actions
     def deactivate_users(self, request, queryset):
         queryset.update(active=False)
     deactivate_users.short_description = "Deactivate selected users"
@@ -35,12 +37,13 @@ class CustomUserAdmin(UserAdmin):
     
 admin.site.register(User, CustomUserAdmin)
 
+
+# Register models
 @admin.register(Appointment)
 class AppointmentAdmin(admin.ModelAdmin):
     list_display = ('appoint_id', 'appointee', 'appointed_doctor', 'appoint_area', 'book_time', 'approve_date', 'appoint_time',  'appoint_status', )
     ordering = ('book_time',)
     list_filter = ('appoint_id', 'appoint_area', ('appointed_doctor', admin.RelatedOnlyFieldListFilter), ('appointee', admin.RelatedOnlyFieldListFilter), 'appoint_status', 'appoint_time', 'book_time', 'is_resolved', 'approve_date', 'close_date') 
-    
     
     search_fields = ('appoint_id', 
                      'book_time',
@@ -77,10 +80,9 @@ class NextOfKinAdmin(admin.ModelAdmin):
     list_display = ('kin_fname', 'kin_lname', 'related_patient', 'relationship', 'kin_phone')
     list_filter = ('kin_fname', 'kin_lname', 'related_patient', 'relationship', 'kin_phone')
     list_display = ('kin_fname', 'kin_lname', 'related_patient', 'relationship', 'kin_phone')
-    
     search_fields = ('kin_fname', 'kin_lname', 'related_patient', 'relationship', 'kin_phone')
     
-
+    
 @admin.register(ID)
 class IDAdmin(admin.ModelAdmin):
     list_display = ('patient_id', 'patient_type', 'registered')

@@ -3,6 +3,8 @@ import secrets
 from django.utils import timezone
 from .paystack import PayStack
 
+
+# Create a Payment model (PayStack Integration)
 class Payment(models.Model):
     patient = models.CharField(max_length=30, default="")
     amount = models.PositiveBigIntegerField()
@@ -45,3 +47,4 @@ class Payment(models.Model):
             return self.verified  # Returning verification status
         else:
             return False
+        

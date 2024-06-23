@@ -1,111 +1,35 @@
+<!DOCTYPE html>
 {% load static %}
 {% load tz %}
-<html lang="en">
+<html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Appoint Master</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 5px;
+        }
+        .center-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+    <script defer src="{% static 'appoint_app/js/date_time.js' %}"></script>
 </head>
-<style>
-    /* Custom CSS for table styling */
-.table {
-    width: 100%;
-    margin-bottom: 1rem;
-    color: #212529;
-}
-
-.table th,
-.table td {
-    padding: 0.75rem;
-    vertical-align: top;
-    border-top: 1px solid #dee2e6;
-}
-
-.table thead th {
-    vertical-align: bottom;
-    border-bottom: 2px solid #dee2e6;
-}
-
-.table tbody + tbody {
-    border-top: 2px solid #dee2e6;
-}
-
-.table .table {
-    background-color: #fff;
-}
-
-.table-sm th,
-.table-sm td {
-    padding: 0.3rem;
-}
-
-.table-bordered {
-    border: 1px solid #dee2e6;
-}
-
-.table-bordered th,
-.table-bordered td {
-    border: 1px solid #dee2e6;
-}
-
-.table-bordered thead th,
-.table-bordered thead td {
-    border-bottom-width: 2px;
-}
-
-.table-striped tbody tr:nth-of-type(odd) {
-    background-color: rgba(0, 0, 0, 0.05);
-}
-
-.table-hover tbody tr:hover {
-    background-color: rgba(0, 0, 0, 0.075);
-}
-
-.table-primary,
-.table-primary > th,
-.table-primary > td {
-    background-color: #b8daff;
-}
-
-.table-primary th,
-.table-primary td,
-.table-primary thead th,
-.table-primary tbody + tbody {
-    border-color: #7abaff;
-}
-
-.table-hover .table-primary:hover {
-    background-color: #9fcdff;
-}
-
-.table-hover .table-primary:hover > td,
-.table-hover .table-primary:hover > th {
-    background-color: #9fcdff;
-}
-
-/* Additional styling for your specific table */
-.table thead th {
-    background-color: #f8f9fa; /* Light gray */
-    font-weight: bold;
-}
-
-.table-hover tbody tr:hover {
-    background-color: #e9ecef; /* Lighter gray on hover */
-}
-
-</style>
 <body>
-<div class="container pt-4">
-    <section class="d-flex bg-primary justify-content-between align-items-center p-1 mb-2 text-white rounded">
-        <a href="/">
-            <img src="{% static 'appoint_app/images/appoint-master-logo.png' %}" width="37" height="37" alt="Logo">
-        </a>
+    <section class="center-content bg-primary p-1 mb-2 text-white rounded">
+        <div class="logo">
+            <img src="static/appoint_app/images/appoint-master-logo.png" width="37" height="37" alt="Logo">
+        </div>
         <div>
             <h6 style="font-size: 14.6px">Appointment Details</h6>
         </div>
         <div>
-            <h6 style="font-size: 14.6px">Appointment ID: {{ appointment.appoint_id }}</h6>
+            <h6 style="font-size: 14.6px">Appointment ID: {{ data.0.appoint_id }}</h6>
         </div>
         <div class="mb-2">
             <span id="real-time-clock" style="font-weight: 700; font-size: 14.5px;">
@@ -115,135 +39,90 @@
             </span>
         </div>
     </section>
-    <div class="card" style="align-items: center; width: 100%;">
-        <div class="card-body" style="align-items: center; width: 50%;">
-            <div class="table-responsive">
-                <table class="table table-hover table-bordered" style="font-size: 13.9px">
-                    <thead>
-                        <tr>
-                            <th>ITEM</th>
-                            <th>DETAILS</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            {% for appointment in appointments %}
-                            <td><b>Booked:</b></td>
-                            <td>{{ appointment.book_time }}</td>
-                        </tr>
-                        <tr>
-                            <td><b>Resolved:</b></td>
-                            <td>
-                                {% if appointment.is_resolved %}
-                                        <strong style="color:rgb(12, 189, 26);">{{ appointment.get_is_resolved_display }}</strong>
-                                {% else %}
-                                        <strong style="font-weight: 700; color:rgb(230, 38, 54);">{{ appointment.get_is_resolved_display }}</strong>
-                                {% endif %}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><b>Appointment Area:</b></td>
-                            <td>{{ appointment.appoint_area }}</td>
-                        </tr>
-                        <tr>
-                            <td><b>Patient:</b></td>
-                            <td>{{ appointee }}</td>
-                        </tr>
-                        <tr>
-                            <td><b>Patient Type:</b></td>
-                            <td>{{ patient_type }}</td>
-                        </tr>
-                        <tr>
-                            <td><b>Patient Gender:</b></td>
-                            <td>{{ appointment.appointee.gender }}</td>
-                        </tr>
-                        <tr>
-                            <td><b>Patient Phone:</b></td>
-                            <td>{{ phone_number }}</td>
-                        </tr>
-                        <tr>
-                            <td><b>Patient Email:</b></td>
-                            <td>{{ appointment.appointee.email }}</td>
-                        </tr>
-                        <tr>
-                            <td><b>Appointed Doctor:</b></td>
-                            <td>{{ appointment.appointed_doctor }}</td>
-                        </tr>
-                        <tr>
-                            <td><b>Payment:</b></td>
-                            <td>
-                                {% if appointment.payment %}
-                                    <strong style="color:rgb(12, 189, 26);">{{ appointment.payment_display }}</strong>
-                                {% else %}
-                                    <strong style="font-weight: 700; color:rgb(230, 38, 54);">{{ appointment.payment_display }}</strong>
-                                {% endif %}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><b>Approved:</b></td>
-                            <td>
-                                {% if appointment.approve_date %}
-                                    {{ appointment.approve_date }}
-                                {% else %}
-                                    --
-                                {% endif %}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><b>Scheduled:</b></td>
-                            <td>
-                                {% if appointment.appoint_time %}
-                                    {{ appointment.appoint_time }}
-                                {% else %}
-                                    --
-                                {% endif %}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><b>Closed:</b></td>
-                            <td>
-                                {% if appointment.close_date %}
-                                    {{ appointment.close_date }}
-                                {% else %}
-                                    --
-                                {% endif %}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><b>Appointment Status:</b></td>
-                            <td>
-                                    {% if appointment.appoint_status == 'Failed' %}
-                                        <strong style="color:rgb(255, 37, 37);">{{ appointment.appoint_status }}</strong>
-                                    {% elif appointment.appoint_status == 'Scheduled' %}
-                                        <strong style="color:rgb(10, 159, 179);">{{ appointment.appoint_status }}</strong>
-                                    {% elif appointment.appoint_status == 'Canceled' %}
-                                        <strong style="color:rgb(230, 38, 54);">{{ appointment.appoint_status }}</strong>
-                                    {% elif appointment.appoint_status == 'Completed' %}
-                                        <strong style="color:rgb(3, 168, 17);">{{ appointment.appoint_status }}</strong>
-                                    {% endif %}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><b>Remarks:</b></td>
-                            <td>{{ appointment.doctor_remarks }}</td>
-                        </tr>
-                        {% endfor %}     
-                </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
-<style>
-    footer {
-        font-size: 13px;
-    }
-</style>
-<footer class="container-fluid bg-primary fixed-bottom text-white  text-bold text-center">
-    <img src="{% static 'appoint_app/images/appoint-master-logo.png' %}" width="30" height="30" alt="Logo"> ©
-  2024 Appoint Master, KUHC
-</footer>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-<script src="{% static 'appoint_app/js/date_time.js' %}"></script>
+    <table>
+        <thead>
+            <tr>
+                <th>Section</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in data %}
+            <tr>
+                <td><b>Booked</b></td>
+                <td>{{ row.book_time }}</td>
+            </tr>
+            <tr>
+                <td><b>Resolved</b></td>
+                <td>{{ row.resolved_display }}</td>
+            </tr>
+            <tr>
+                <td><b>Appointment Area</b></td>
+                <td>{{ row.appoint_area }}</td>
+            </tr>
+            <tr>
+                <td><b>Patient</b></td>
+                <td>{{ row.patient }}</td>
+            </tr>
+            <tr>
+                <td><b>Patient Type</b></td>
+                <td>{{ row.patient_type }}</td>
+            </tr>
+            <tr>
+                <td><b>Patient Gender</b></td>
+                <td>{{ row.gender }}</td>
+            </tr>
+            <tr>
+                <td><b>Patient Phone</b></td>
+                <td>{{ row.phone_number }}</td>
+            </tr>
+            <tr>
+                <td><b>Patient Email</b></td>
+                <td>{{ row.email }}</td>
+            </tr>
+            <tr>
+                <td><b>Appointed Doctor</b></td>
+                <td>{{ row.appointed_doctor }}</td>
+            </tr>
+            <tr>
+                <td><b>Payment</b></td>
+                <td>{{ row.payment_display }}</td>
+            </tr>
+            <tr>
+                <td><b>Approved</b></td>
+                <td>{{ row.approved }}</td>
+            </tr>
+            <tr>
+                <td><b>Scheduled</b></td>
+                <td>{{ row.scheduled }}</td>
+            </tr>
+            <tr>
+                <td><b>Closed</b></td>
+                <td>{{ row.closed }}</td>
+            </tr>
+            <tr>
+                <td><b>Appointment Status</b></td>
+                <td>{{ row.appoint_status }}</td>
+            </tr>
+            <tr>
+                <td><b>Remarks</b></td>
+                <td>{{ row.doctor_remarks }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+         
+    <style>
+        footer {
+            font-size: 13px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+    <footer class="container-fluid bg-primary fixed-bottom text-white text-bold">
+        <img src="static/appoint_app/images/appoint-master-logo.png" width="20" height="20" alt="Logo"> ©
+      2024 Appoint Master, KUHC
+    </footer>
 </body>
 </html>

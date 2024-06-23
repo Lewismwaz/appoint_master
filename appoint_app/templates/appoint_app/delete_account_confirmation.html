@@ -16,8 +16,10 @@
         }
         .container {
             text-align: center;
-            padding: 30px;
-            background-color: #fff;
+            padding: 40px;
+            padding-top: 60px;
+            padding-bottom: 60px;
+            background-color: #c4c4c4;
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
@@ -25,9 +27,9 @@
             background-color: #e53e3e;
             color: #fff;
             border: none;
-            padding: 10px 15px;
+            padding: 7px 13px;
             margin-right: 10px;
-            border-radius: 9px;
+            border-radius: 10px;
             cursor: pointer;
             margin-bottom: 5px;
         }
@@ -35,11 +37,11 @@
             background-color: #c53030;
         }
         .btn-cancel {
-            background-color: #3182ce;
+            background-color: #31049c;
             color: #fff;
             border: none;
-            padding: 10px 15px;
-            border-radius: 9px;
+            padding: 7px 13px;
+            border-radius: 10px;
             cursor: pointer;
             margin-bottom: 5px;
         }
@@ -53,12 +55,12 @@
         <div class="text-center pb-2">
             <img src="{% static 'appoint_app/images/appoint-master-logo.png' %}" alt="Logo" style="width: 43px; height: 43px;">
         </div>
-        <h2 style="font-size: 21px; font-family:'Times New Roman', Times, serif;">Confirm Account Deletion</h2>
+        <h2 style="font-size: 18px; font-family: Georgia, serif;">Confirm Account Deletion</h2>
         <p>Are you sure you want to permanently delete your account?</p>
         <form method="post">
             {% csrf_token %}
-            <button type="submit" class="btn-delete" style="text-decoration: none;">Delete</button>
-            <a href="/" class="btn-cancel" style="text-decoration: none;">Cancel</a>
+            <button type="submit" class="btn-delete" style="text-decoration: none;">Yes</button>
+            <a href="/" class="btn-cancel" style="text-decoration: none;">No</a>
         </form>
     </div>
 </body>
