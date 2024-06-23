@@ -82,10 +82,11 @@ All Users can also **delete** their accounts (permanently) if they choose to.
 
 
 #### 10. Data Analytics  
-➢ The system can show real data analytics (statistically) of appointments [Booked, Scheduled, Failed, Canceled, Completed, Closed], Payments [Mpesa transactions] and Active/Registered Patients [Student Cover, MediCare Cover-Staff]. See the screenshot below (Admin Dashboard).  
+➢ The system can show real data analytics (statistically) of appointments [Booked, Scheduled, Failed, Canceled, Completed, Closed], Payments [Mpesa transactions] and Active/Registered Patients [Student Cover, MediCare Cover-Staff]. See the screenshot below (Admin, Patient, & Doctor Dashboard).  
 
 ![analytics-admin](https://i.imgur.com/j5jauE0.png)
-
+![patient-dashboard-analytics](https://i.imgur.com/TseCEaM.png)
+![doctor-dashboard-analytics](https://i.imgur.com/KFA7Viv.png)
 
 
 #### 11. Flexible Patient ID registration   
