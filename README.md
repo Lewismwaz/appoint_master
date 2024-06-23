@@ -17,11 +17,9 @@ Appoint Master **only** acts as an **intermediary** between the *patients* and *
 
 ### Users
 
-- The system is restricted to:  
+The system is restricted to:  
 ➢ **Students**,  
-
 ➢ **Staff**, and  
-
 ➢ **Doctors** of Kenyatta University - [KU](https://www.ku.ac.ke/). 
 
 >[!NOTE]   
