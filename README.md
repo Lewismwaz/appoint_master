@@ -1,7 +1,7 @@
-<p align="center"> <img src="https://i.imgur.com/OqKSwG3.png" alt="appoint-master-dark" width="75" height="75" style="vertical-align: middle;"><span style="font-size: 28px; font-weight: bold;">E-Appoint Master</span> </p>
+<p align="center"> <img src="https://i.imgur.com/OqKSwG3.png" alt="appoint-master-dark" width="75" height="75" style="vertical-align: middle;"><span style="font-size: 28px;">E-Appoint Master</span> </p>
 
 ## *Doctor Appointment Management System using Django*
-[Appoint Master](https://github.com/Lewismwaz/appoint_master)**©** **2024, All Rights Reserved **
+[Appoint Master](https://github.com/Lewismwaz/appoint_master)**©** 2024, All Rights Reserved 
 # System Documentation
 
 ### OVERVIEW
@@ -11,7 +11,7 @@
 
 ➢ Appoint Master steps in to make things easier for KUHC patients to book an appointment with their doctors. It tries to automate the process of booking doctor appointments from the old-school manual system.
 
->[!Keep in mind] 
+>[!NOTE] 
 Appoint Master **only** acts as an **intermediary** between the *patients* and *KUHC*; and thus ***does not go into the details of what happens during the appointments*** (any medical procedures). 
 
 
@@ -22,7 +22,7 @@ Appoint Master **only** acts as an **intermediary** between the *patients* and *
 ➢ **Staff**, and
 ➢ **Doctors** of Kenyatta University - [KU](https://www.ku.ac.ke/). 
 
->[!NOTE THIS]   
+>[!NOTE]   
  Any Validation rules used in the system are in compliance with the KU system, such as user IDs. The **Admin** is also a user of the system; probably a member of the staff (but not a staff patient!).  
 
 
@@ -39,7 +39,8 @@ All Users can also **delete** their accounts (permanently) if they choose to.
 
 #### 2. Appointments Management  
 ➢ Patients can ***book*** a doctor appointment, ***cancel*** it and even ***delete*** the appointments. Patients can also ***view*** all their appointments, that is, **Scheduled, Failed, Canceled**, and **Completed**. Doctors can ***view all appointments*** meant for them, for instance, dentists will only see appointments from patients with dental problems. Doctors can also ***close*** an appointment once it's completed. Admins can ***view*** and ***manage all appointments***; they can ***create, cancel, close*** and ***delete*** an appointment.  
->[!NOTE THIS]   
+
+>[!NOTE]   
 > When looking at details about a specific appointment, the Patient and the Doctor have different page views. For instance, the patient can generate a report about that particular appointment while the doctor can't. The patient can also view their personal details such as *phone number* and *email* used for that appointment; the doctor won't see the patient's *phone number* or *email* when checking details about a specific appointment.
 
 
@@ -54,7 +55,7 @@ All Users can also **delete** their accounts (permanently) if they choose to.
 #### 5. One Time Password(OTP) Verification   
 ➢ OTP (One-Time Password) verification is a security mechanism used to authenticate users and verify their identity. In Appoint Master, this is achieved by the system sending 6-digit codes to **Doctors** and **Admins** via email during login. It's an added layer of security on top of the normal login page, to further validate high-level users.  
 
->[!NOTE THIS]   
+>[!NOTE]   
  This feature is not fully implemented (is incomplete). May require addition of time-sensitivity; OTPs to expire after a specific period of time. 
 
 
@@ -69,14 +70,14 @@ All Users can also **delete** their accounts (permanently) if they choose to.
 #### 8. Next-of-Kin  
 ➢ Patients can add information regarding their next-of-kin, and the next-of-kin are linked to those particular patients. Therefore, if for instance the patient account (with next-of-kin) is deleted, their next-of-Kins are also deleted along with it.   
 
->[!NOTE THIS]   
+>[!NOTE]   
  This feature is not fully implemented (is incomplete). May require addition of next-of-kin actions in the system such as appointment booking. 
 
 
 #### 9. Reports Generation  
 ➢ The system can be used to generate reports for patient appointments and payments. Admins can generate reports of all payments and appointments for all the patients. Patients can generate a report of a specific appointment, and all their payments too.
 
->[!NOTE THIS]   
+>[!NOTE]   
  This feature is not fully implemented (is incomplete). May need to be customized based on various dates and time.
 
 
@@ -705,7 +706,7 @@ You should get something like this (below):
 > [!IMPORTANT]
 > Ensure that the venv is activated before running the 2 commands; in both terminals.
 
->[!NOTE THIS]
+>[!NOTE]
 >The Timezone used for this project is "Africa/Nairobi". For users from other regions, it is recommended to replace this with your own Timezone (*Settings.py line 130*).
 
 ### Accessing the site  
@@ -730,7 +731,7 @@ You should get something like this (below):
 5. As a doctor, you can view and manage (close) your appointments.
 6. As a patient, you can schedule/create, pay for, cancel, view and delete your appointments. You can also generate reports for a specific appointment and even for all your payments.
 
->[!WARNING]
+>[!CAUTION]
 >All users have an option to delete their account PERMANENTLY! If they so choose to do that, then, everything about them in the system is permanently deleted.
 
 
@@ -769,4 +770,4 @@ For any inquiries, please contact:
 - Email - eappointmaster@gmail.com
 - GitHub - [@Lewismwaz](https://github.com/Lewismwaz)  
 
-[Appoint Master](https://github.com/Lewismwaz/appoint_master)**©** **2024, All Rights Reserved **
+[Appoint Master](https://github.com/Lewismwaz/appoint_master)**©** 2024, All Rights Reserved
