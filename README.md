@@ -19,7 +19,9 @@ Appoint Master **only** acts as an **intermediary** between the *patients* and *
 
 - The system is restricted to:  
 ➢ **Students**,  
-➢ **Staff**, and
+
+➢ **Staff**, and  
+
 ➢ **Doctors** of Kenyatta University - [KU](https://www.ku.ac.ke/). 
 
 >[!NOTE]   
@@ -761,8 +763,9 @@ Contributions are welcome! Please follow these steps(below) to contribute:
 
 ## License
 
-This project is licensed under the MIT License. 
+This project is licensed under the MIT License. View License [here.](https://github.com/Lewismwaz/appoint_master/blob/main/MIT%20LICENSE.txt)  
 
+More details about the MIT License can be found [here.](https://choosealicense.com/licenses/mit/)
 ## Contact
 
 For any inquiries, please contact:
