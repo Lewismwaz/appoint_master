@@ -81,8 +81,14 @@ All Users can also **delete** their accounts (permanently) if they choose to.
  This feature is not fully implemented (is incomplete). May need to be customized based on various dates and time.
 
 
+#### 10. Data Analytics  
+➢ The system can show real data analytics (statistically) of appointments [Booked, Scheduled, Failed, Canceled, Completed, Closed], Payments [Mpesa transactions] and Active/Registered Users [Student Cover, MediCare Cover-Staff]. See the screenshot below (Admin Dashboard).  
 
-#### 10. Flexible Patient ID registration   
+![analytics-admin](https://i.imgur.com/j5jauE0.png)
+
+
+
+#### 11. Flexible Patient ID registration   
 ➢ It is possible to create new patient IDs (by Admin), which are initially set to unregistered. These IDs are linked to the registration system, where by registration is only possible for IDs already in the system. Once the patient fills the registration form successfully, the ID (which was initially unregistered) becomes registered under that user. Any attempt to create an account with same ID is revoked by the system.   
 
 >[!IMPORTANT]   
