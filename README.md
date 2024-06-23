@@ -1,4 +1,4 @@
-<p align="center"> <img src="https://i.imgur.com/OqKSwG3.png" alt="appoint-master-dark" width="75" height="75" style="vertical-align: middle;"><span style="font-size: 28px;">E-Appoint Master</span> </p>
+<p align="center"> <img src="https://i.imgur.com/OqKSwG3.png" alt="appoint-master-dark" width="55" height="55" style="vertical-align: middle;"><span style="font-size: 28px;">E-Appoint Master</span> </p>
 
 ## *Doctor Appointment Management System using Django*
 [Appoint Master](https://github.com/Lewismwaz/appoint_master)**©** 2024, All Rights Reserved 
