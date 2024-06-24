@@ -731,7 +731,7 @@ You should get something like this (below):
 ## Usage  
 
 >[!IMPORTANT]
->Before anything else, log into the admin account, and create a couple of Patient (Student & Staff) IDs. Patients can't register themselves with the system if they're not recognized already, and thus this would make things easier when it comes to validating new users wanting to register, who are not students/staff. The video demo will come in handy. See implementation [here](https://drive.google.com/file/d/1eJhNkD0zOJYs890b8l1vtAldX9GkB4Oe/view?usp=drivesdk)
+>Before anything else, log into the admin account, and create a couple of Patient (Student & Staff) IDs. Patients can't register themselves with the system if they're not recognized already, and thus this would make things easier when it comes to validating new users wanting to register, who are not students/staff. The video demo will come in handy. See implementation [here](https://drive.google.com/file/d/1ymAbw7n1UYogrRrc1ILahWsgL54yYRdW/view?usp=drivesdk)
 
 1. Open your browser and go to `http://127.0.0.1:8000/`.
 2. Register yourself as a patient using your institution ID (Staff/Student). Reset password by selecting "forgotten password". For doctors and other admins, the admin creates their account, then the login credentials (username & password) are automatically sent to them (via email).
@@ -747,7 +747,7 @@ You should get something like this (below):
 ## Video Demo of the system  
 
 >[!NOTE]
->To see a full implementation of the system, click [here](https://drive.google.com/file/d/1eJhNkD0zOJYs890b8l1vtAldX9GkB4Oe/view?usp=drivesdk)
+>To see a full implementation of the system, click [here](https://drive.google.com/file/d/1ymAbw7n1UYogrRrc1ILahWsgL54yYRdW/view?usp=drivesdk)
 
 
 ## Technologies used
