@@ -45,7 +45,7 @@ All Users can also **delete** their accounts (permanently) if they choose to.
 
 
 #### 3. Electonic Payments  
-➢ Patients can pay for their appointments electronically via the  ***[PayStack API](https://paystack.com/docs/api/)*** by either using their ***M-Pesa*** or ***Visa***. After payment verification, it's only when the appointments be deemed to be scheduled.  
+➢ Patients can pay for their appointments electronically via the  ***[PayStack API](https://paystack.com/docs/api/)*** by either using their ***M-Pesa*** or ***Visa***. After payment verification, it's only when the appointments can be deemed to be scheduled.  
 
 
 #### 4. SMTP Mail Service  
