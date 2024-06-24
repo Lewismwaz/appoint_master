@@ -448,9 +448,6 @@ python -m venv venv
 
 
 
-##### Jazzmin Dashboard setup>Admin UI  
-Copy the *base.html* file (Located: *appoint_master→Resources*), paste and replace it inside: **venv→Lib→site-packages→jazzmin→templates→admin**. 
-
 
 ##### Venv Activation  
 ➢ In the terminal, activate the virtual environment using the command below:  
@@ -668,6 +665,11 @@ zopfli==0.2.3
 ```
 pip install -r requirements.txt
 ```
+
+
+##### Jazzmin Dashboard setup>Admin UI  
+Copy the *base.html* file (Located: *appoint_master→Resources*), paste and replace it inside: **venv→Lib→site-packages→jazzmin→templates→admin**. 
+
 
 
 ### Migrations
