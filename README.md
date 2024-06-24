@@ -705,7 +705,7 @@ You should get something like this (below):
 
 ```
 python manage.py runserver
-python manage.py tailwindstart
+python manage.py tailwind start
 ```
 
 You should get something like this (below):  
